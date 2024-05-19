@@ -1,4 +1,4 @@
-🎬 Movie Agenda
+#🎬 Movie Agenda
 Movie Agenda é uma aplicação web inovadora que permite aos cinéfilos gerenciar seus filmes favoritos, criar listas personalizadas e acessar informações detalhadas sobre filmes utilizando a poderosa API do The Movie Database (TMDB). 🎥🍿
 
 
