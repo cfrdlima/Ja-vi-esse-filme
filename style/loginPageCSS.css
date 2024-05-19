@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  gap: 50px;
+  margin: 0;
+  height: 100vh;
+  padding: 0 32px;
+  background: #b83b5e;
+  font-family: "DM Sans", sans-serif;
+}
+
+@media (width >= 500px) {
+  body {
+    padding: 0;
+  }
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+  width: 94%;
+  margin: 0 50px;
+  padding: 170px 30px 54px;
+  border-radius: 24px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -880px;
+  left: 50%;
+  translate: -50% 0;
+  width: 1000px;
+  height: 1000px;
+  border-radius: 50%;
+  background: #f08a5d;
+}
+
+@media (width >= 500px) {
+  .card {
+    margin-bottom: 10rem;
+    width: 360px;
+  }
+}
+
+.card .logo {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  translate: -50% 0;
+  width: 80px;
+  height: 100px;
+}
+
+.card > h2 {
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 38px;
+  color: rgb(0 0 0 / 55%);
+}
+
+.form {
+  margin: 0 0 44px;
+  display: grid;
+  gap: 12px;
+}
+
+.form :is(input, button) {
+  width: 100%;
+  height: 56px;
+  border-radius: 28px;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.form > input {
+  border: 0;
+  padding: 0 24px;
+  color: #222222;
+  background: #ededed;
+}
+
+.form > input::placeholder {
+  color: rgb(0 0 0 / 28%);
+}
+
+.form > button {
+  border: 0;
+  color: #f9f9f9;
+  background: #745178;
+  display: grid;
+  place-items: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.card > footer {
+  color: rgb(0 0 0 / 55%);
+}
+
+.card > footer > a {
+  color: #216ce7;
+}
