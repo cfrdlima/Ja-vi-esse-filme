@@ -8,23 +8,17 @@ body {
   gap: 50px;
   margin: 0;
   height: 100vh;
-  padding: 0 32px;
+  padding: 0;
   background: #b83b5e;
   font-family: "DM Sans", sans-serif;
-}
-
-@media (width >= 500px) {
-  body {
-    padding: 0;
-  }
 }
 
 .card {
   overflow: hidden;
   position: relative;
   z-index: 3;
-  width: 94%;
-  margin: 0 50px;
+  width: 360px;
+  margin: 0 50px 10rem;
   padding: 170px 30px 54px;
   border-radius: 24px;
   background: #ffffff;
@@ -37,26 +31,19 @@ body {
   position: absolute;
   top: -880px;
   left: 50%;
-  translate: -50% 0;
+  transform: translateX(-50%);
   width: 1000px;
   height: 1000px;
   border-radius: 50%;
   background: #f08a5d;
 }
 
-@media (width >= 500px) {
-  .card {
-    margin-bottom: 10rem;
-    width: 360px;
-  }
-}
-
 .card .logo {
   position: absolute;
   top: 10px;
   left: 50%;
-  translate: -50% 0;
-  width: 80px;
+  transform: translateX(-50%);
+  width: 100px;
   height: 100px;
 }
 
@@ -108,4 +95,50 @@ body {
 
 .card > footer > a {
   color: #216ce7;
+}
+
+/* Responsividade para telas menores que 768px */
+@media only screen and (max-width: 768px) {
+  body {
+    padding: 0 16px;
+    gap: 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 800px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    padding: 150px 20px 40px;
+    border-radius: 16px;
+  }
+
+  .card::before {
+    top: -700px;
+    width: 800px;
+    height: 800px;
+  }
+
+  .card .logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .card > h2 {
+    font-size: 24px;
+    margin: 0 0 24px;
+  }
+
+  .form :is(input, button) {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .form {
+    gap: 8px;
+    margin: 0 0 32px;
+  }
+
+  .card > footer {
+    font-size: 14px;
+  }
 }
