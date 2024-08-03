@@ -2,7 +2,9 @@
   background-color: #0f172a;
   padding: 12px 3%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; // Necessário para posicionar o menu corretamente
 
   .page-title {
     color: aliceblue;
@@ -11,7 +13,88 @@
   }
 
   .navbar-img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 1000;
+
+    .bar {
+      width: 100%;
+      height: 3px;
+      background-color: #fff;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &.open {
+      .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+  }
+
+  .menu-list {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 15%; // Ajuste a largura conforme necessário
+    background-color: #0f172a;
+    padding: 2rem 1rem;
+    border-left: 1px solid #fff;
+    z-index: 999;
+    transition: transform 0.6s ease-in-out;
+    transform: translateX(100%);
+
+    &.open {
+      display: flex;
+      transform: translateX(0);
+    }
+
+    li {
+      list-style: none;
+      margin: 1rem 0;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .menu-list {
+      width: 100%; // Faz com que o menu lateral ocupe toda a largura da tela
+      height: auto; // Ajusta a altura do menu para se ajustar ao conteúdo
+      top: 60px; // Ajuste a distância do topo conforme necessário (por exemplo, a altura do navbar)
+      opacity: 85%;
+      right: 0;
+      border-left: none; // Remove a borda esquerda
+      border-top: 1px solid #fff; // Adiciona uma borda superior para separar o menu do conteúdo
+      transform: translateY(-100%); // Inicialmente fora da tela
+
+      &.open {
+        display: flex;
+        transform: translateY(0); // Mostra o menu deslizando para baixo
+      }
+    }
   }
 }
