@@ -13,11 +13,11 @@ export default function SeriesCard(props: Props) {
       <div className="serie-poster">
         <img
           src={`https://image.tmdb.org/t/p/original${serie.poster_path}`}
-          alt={serie.title}
+          alt={serie.name}
         />
       </div>
       <div className="serie-infos">
-        <p className="serie-title">{serie.title}</p>
+        <p className="serie-title">{serie.name}</p>
         {serie.vote_average > 0 && <StarRating rating={serie.vote_average} />}
         <div className="hidden-content">
           {serie.overview && (
