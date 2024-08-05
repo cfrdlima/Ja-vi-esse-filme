@@ -1,19 +1,34 @@
 "use client";
 
 import React, { useState } from "react";
-import MovieList from "./pages/MovieList/page";
-import SeriesList from "./pages/SeriesList/page";
-import Navbar from "./pages/navbar";
-
-type Category = "movies" | "series";
+import sofaImage from "./assets/sofa.png";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import "./page.scss";
 
 export default function Home() {
-  const [category, setCategory] = useState<Category>("movies");
-
+  const router = useRouter();
   return (
     <div>
-      <Navbar currentCategory={category} setCategory={setCategory} />
-      {category === "movies" ? <MovieList /> : <SeriesList />}
+      <div className="background"></div>
+      <div className="card">
+        <Image className="logo" src={sofaImage} alt="sofa" />
+        <h2>Bem Vindo</h2>
+        <form className="form">
+          <input type="email" placeholder="Usuário" />
+          <input type="password" placeholder="Senha" />
+          <button
+            type="button"
+            onClick={() => router.push("/pages/SeriesList")}
+          >
+            Entrar
+          </button>
+        </form>
+        <footer>
+          Precisa de uma conta?
+          <a href="https://www.themoviedb.org/?language=pt-BR"> Crie já!</a>
+        </footer>
+      </div>
     </div>
   );
 }

@@ -4,8 +4,8 @@ import React from "react";
 import "./index.scss";
 
 interface NavbarProps {
-  currentCategory: "movies" | "series";
-  setCategory: (category: "movies" | "series") => void;
+  currentCategory: "movies" | "series" | "inicio";
+  setCategory: (category: "movies" | "series" | "inicio") => void;
 }
 
 export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
@@ -17,7 +17,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
 
   return (
     <nav className="navbar">
-      <h1 className="page-title">Filmes</h1>
+      <h1 className="page-title">Inicio</h1>
       <div
         className={`burger-menu ${menuOpen ? "open" : ""}`}
         onClick={toggleMenu}

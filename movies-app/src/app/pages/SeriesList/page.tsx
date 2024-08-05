@@ -6,10 +6,15 @@ import axios from "axios";
 import { Series } from "@/types/series";
 import SeriesCard from "../SeriesCard";
 import ReactLoading from "react-loading";
+import Navbar from "../navbar";
+
+type Category = "movies" | "series" | "inicio";
 
 export default function SeriesList() {
   const [series, setSeries] = useState<Series[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [category, setCategory] = useState<Category>("series");
+
   useEffect(() => {
     getSeries();
   }, []);
@@ -20,6 +25,8 @@ export default function SeriesList() {
       params: {
         api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
         language: "pt-br",
+        first_air_date_year: "2024",
+        with_origin_country: "US",
       },
     }).then((response) => {
       setSeries(response.data.results);
@@ -38,10 +45,13 @@ export default function SeriesList() {
   }
 
   return (
-    <ul className="series-list">
-      {series.map((serie) => (
-        <SeriesCard series={serie} key={serie.id} />
-      ))}
-    </ul>
+    <>
+      <Navbar currentCategory={category} setCategory={setCategory} />
+      <ul className="series-list">
+        {series.map((serie) => (
+          <SeriesCard series={serie} key={serie.id} />
+        ))}
+      </ul>
+    </>
   );
 }

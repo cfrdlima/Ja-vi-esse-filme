@@ -6,10 +6,15 @@ import axios from "axios";
 import { Movie } from "@/types/movie";
 import MovieCard from "../MovieCard";
 import ReactLoading from "react-loading";
+import Navbar from "../navbar";
+
+type Category = "movies" | "series" | "inicio";
 
 export default function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [category, setCategory] = useState<Category>("series");
+
   useEffect(() => {
     getMovies();
   }, []);
@@ -20,6 +25,7 @@ export default function MovieList() {
       params: {
         api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
         language: "pt-br",
+        primary_release_year: "2024",
       },
     }).then((response) => {
       setMovies(response.data.results);
@@ -38,10 +44,13 @@ export default function MovieList() {
   }
 
   return (
-    <ul className="movie-list">
-      {movies.map((movie) => (
-        <MovieCard movie={movie} key={movie.id} />
-      ))}
-    </ul>
+    <>
+      <Navbar currentCategory={category} setCategory={setCategory} />
+      <ul className="movie-list">
+        {movies.map((movie) => (
+          <MovieCard movie={movie} key={movie.id} />
+        ))}
+      </ul>
+    </>
   );
 }
