@@ -1,15 +1,17 @@
 "use client";
 
 import React from "react";
-import "./index.scss";
+import { useRouter } from "next/navigation";
+import "./page.scss";
 
 interface NavbarProps {
-  currentCategory: "movies" | "series" | "inicio";
-  setCategory: (category: "movies" | "series" | "inicio") => void;
+  currentCategory: string;
+  setCategory: (category: string) => void;
 }
 
 export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -17,7 +19,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
 
   return (
     <nav className="navbar">
-      <h1 className="page-title">Inicio</h1>
+      <h1 className="page-title">{currentCategory}</h1>
       <div
         className={`burger-menu ${menuOpen ? "open" : ""}`}
         onClick={toggleMenu}
@@ -29,18 +31,27 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
       <ul className={`menu-list ${menuOpen ? "open" : ""}`}>
         <li>
           <a
-            href="/pages/MovieList/"
-            className={currentCategory === "movies" ? "active" : ""}
+            className={currentCategory === "Filmes" ? "active" : ""}
             onClick={(e) => {
               e.preventDefault();
-              setCategory("movies");
+              setCategory("Filmes");
+              router.push("/pages/MovieList");
             }}
           >
             Filmes
           </a>
         </li>
         <li>
-          <a href="/pages/SeriesList/">Séries</a>
+          <a
+            className={currentCategory === "Series" ? "active" : ""}
+            onClick={(e) => {
+              e.preventDefault();
+              setCategory("Series");
+              router.push("/pages/SeriesList");
+            }}
+          >
+            Séries
+          </a>
         </li>
         <li>
           <a href="#">Listas</a>

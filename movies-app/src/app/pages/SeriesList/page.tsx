@@ -6,14 +6,14 @@ import axios from "axios";
 import { Series } from "@/types/series";
 import SeriesCard from "../SeriesCard";
 import ReactLoading from "react-loading";
-import Navbar from "../navbar";
+import Navbar from "../navbar/page";
 
-type Category = "movies" | "series" | "inicio";
+type Category = string;
 
 export default function SeriesList() {
   const [series, setSeries] = useState<Series[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [category, setCategory] = useState<Category>("series");
+  const [category, setCategory] = useState<Category>("Series");
 
   useEffect(() => {
     getSeries();
@@ -35,6 +35,10 @@ export default function SeriesList() {
 
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    console.log(`Categoria atual: ${category}`);
+  }, [category]);
 
   if (isLoading) {
     return (

@@ -6,33 +6,37 @@ import axios from "axios";
 import { Movie } from "@/types/movie";
 import MovieCard from "../MovieCard";
 import ReactLoading from "react-loading";
-import Navbar from "../navbar";
+import Navbar from "../navbar/page";
 
-type Category = "movies" | "series" | "inicio";
+type Category = string;
 
 export default function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [category, setCategory] = useState<Category>("series");
+  const [category, setCategory] = useState<Category>("Filmes");
 
   useEffect(() => {
     getMovies();
   }, []);
-  const getMovies = async () => {
-    await axios({
-      method: "get",
-      url: "https://api.themoviedb.org/3/discover/movie",
-      params: {
-        api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
-        language: "pt-br",
-        primary_release_year: "2024",
-      },
-    }).then((response) => {
-      setMovies(response.data.results);
-      console.log(response);
-    });
 
-    setIsLoading(false);
+  const getMovies = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/discover/movie",
+        {
+          params: {
+            api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
+            language: "pt-br",
+            primary_release_year: "2024",
+          },
+        }
+      );
+      setMovies(response.data.results);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isLoading) {

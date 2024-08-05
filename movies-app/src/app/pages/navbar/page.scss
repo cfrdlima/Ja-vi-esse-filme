@@ -4,17 +4,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative; // Necessário para posicionar o menu corretamente
 
   .page-title {
     color: aliceblue;
     margin-top: 10px;
     padding-right: 2%;
-  }
-
-  .navbar-img {
-    width: 100px;
-    height: 100px;
   }
 
   .burger-menu {
@@ -49,7 +43,7 @@
   }
 
   .menu-list {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -64,7 +58,6 @@
     transform: translateX(100%);
 
     &.open {
-      display: flex;
       transform: translateX(0);
     }
 
@@ -76,6 +69,11 @@
         color: #fff;
         text-decoration: none;
         font-size: 1.5rem;
+        cursor: pointer;
+
+        &.active {
+          font-weight: bold;
+        }
       }
     }
   }
@@ -88,13 +86,7 @@
       opacity: 85%;
       right: 0;
       border-left: none; // Remove a borda esquerda
-      border-top: 1px solid #fff; // Adiciona uma borda superior para separar o menu do conteúdo
-      transform: translateY(-100%); // Inicialmente fora da tela
-
-      &.open {
-        display: flex;
-        transform: translateY(0); // Mostra o menu deslizando para baixo
-      }
+      border-top: 1px solid #fff; // Adiciona uma borda superio
     }
   }
 }
