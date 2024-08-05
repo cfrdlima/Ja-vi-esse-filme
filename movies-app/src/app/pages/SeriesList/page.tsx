@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "./index.scss";
+import "./page.scss";
 import axios from "axios";
 import { Series } from "@/types/series";
 import SeriesCard from "../SeriesCard";

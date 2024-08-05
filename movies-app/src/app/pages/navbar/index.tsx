@@ -29,7 +29,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
       <ul className={`menu-list ${menuOpen ? "open" : ""}`}>
         <li>
           <a
-            href="#"
+            href="/pages/MovieList/"
             className={currentCategory === "movies" ? "active" : ""}
             onClick={(e) => {
               e.preventDefault();
@@ -40,16 +40,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            className={currentCategory === "series" ? "active" : ""}
-            onClick={(e) => {
-              e.preventDefault();
-              setCategory("series");
-            }}
-          >
-            Séries
-          </a>
+          <a href="/pages/SeriesList/">Séries</a>
         </li>
         <li>
           <a href="#">Listas</a>

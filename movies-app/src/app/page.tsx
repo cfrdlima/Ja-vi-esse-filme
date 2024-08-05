@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import MovieList from "./components/MovieList";
-import SeriesList from "./components/SeriesList";
-import Navbar from "./components/navbar";
+import MovieList from "./pages/MovieList/page";
+import SeriesList from "./pages/SeriesList/page";
+import Navbar from "./pages/navbar";
 
 type Category = "movies" | "series";
 
