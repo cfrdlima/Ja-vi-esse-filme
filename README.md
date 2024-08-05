@@ -10,7 +10,7 @@
 > ### 🖥️ Interface amigável: Navegação intuitiva e design elegante para uma experiência de usuário envolvente.
 
 ## Tecnologias Utilizadas 🛠️
-> ### HTML5 & CSS3: Estrutura e estilo da interface de usuário.
-> ### JavaScript: Lógica do lado do cliente para interações dinâmicas.
-> ### Fetch API: Consumo da API do TMDB para obter dados de filmes.
+> ### HTML5 & SCSS: Estrutura e estilo da interface de usuário.
+> ### JavaScript & NEXTJS & REACT: Lógica do lado do cliente para interações dinâmicas.
+> ### AXIOS: Consumo da API do TMDB para obter dados de filmes.
 > ### TMDB API: Fonte de dados para informações de filmes e autenticação.
