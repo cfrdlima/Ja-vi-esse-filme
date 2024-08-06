@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./page.scss";
 import axios from "axios";
 import { Movie } from "@/types/movie";
