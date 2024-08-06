@@ -35,7 +35,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
             onClick={(e) => {
               e.preventDefault();
               setCategory("Filmes");
-              router.push("/pages/MovieList");
+              router.push("/Pages/MovieList");
             }}
           >
             Filmes
@@ -47,7 +47,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
             onClick={(e) => {
               e.preventDefault();
               setCategory("Series");
-              router.push("/pages/SeriesList");
+              router.push("/Pages/SeriesList");
             }}
           >
             Séries
