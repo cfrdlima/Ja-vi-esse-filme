@@ -29,33 +29,37 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
         <div className="bar"></div>
       </div>
       <ul className={`menu-list ${menuOpen ? "open" : ""}`}>
-        <li>
-          <a
-            className={currentCategory === "Filmes" ? "active" : ""}
-            onClick={(e) => {
-              e.preventDefault();
-              setCategory("Filmes");
-              router.push("/Pages/MovieList");
-            }}
-          >
-            Filmes
-          </a>
-        </li>
-        <li>
-          <a
-            className={currentCategory === "Series" ? "active" : ""}
-            onClick={(e) => {
-              e.preventDefault();
-              setCategory("Series");
-              router.push("/Pages/SeriesList");
-            }}
-          >
-            Séries
-          </a>
-        </li>
-        <li>
-          <a href="#">Listas</a>
-        </li>
+        <div className="navbar-itens-container">
+          <div className="navbar-itens">
+            <li>
+              <a
+                className={currentCategory === "Filmes" ? "active" : ""}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCategory("Filmes");
+                  router.push("/Pages/MovieList");
+                }}
+              >
+                Filmes
+              </a>
+            </li>
+            <li>
+              <a
+                className={currentCategory === "Series" ? "active" : ""}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCategory("Series");
+                  router.push("/Pages/SeriesList");
+                }}
+              >
+                Séries
+              </a>
+            </li>
+            <li>
+              <a href="#">Listas</a>
+            </li>
+          </div>
+        </div>
       </ul>
     </nav>
   );
