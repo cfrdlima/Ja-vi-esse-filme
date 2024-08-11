@@ -16,7 +16,7 @@ export default function Home() {
         <form className="form">
           <input type="email" placeholder="Usuário" />
           <input type="password" placeholder="Senha" />
-          <button type="button" onClick={() => router.push("/Pages/MovieList")}>
+          <button type="button" onClick={() => router.push("/Pages/Inicio")}>
             Entrar
           </button>
         </form>

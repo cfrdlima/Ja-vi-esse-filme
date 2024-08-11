@@ -33,6 +33,18 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
           <div className="navbar-itens">
             <li>
               <a
+                className={currentCategory === "Inicio" ? "active" : ""}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCategory("Inicio");
+                  router.push("/Pages/Inicio");
+                }}
+              >
+                Início
+              </a>
+            </li>
+            <li>
+              <a
                 className={currentCategory === "Filmes" ? "active" : ""}
                 onClick={(e) => {
                   e.preventDefault();
@@ -54,9 +66,6 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
               >
                 Séries
               </a>
-            </li>
-            <li>
-              <a href="#">Listas</a>
             </li>
           </div>
         </div>
