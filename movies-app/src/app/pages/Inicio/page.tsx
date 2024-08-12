@@ -10,11 +10,18 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Movie } from "@/types/movie";
 import axios from "axios";
 import ReactLoading from "react-loading";
+import AuxiliarMovie from "../auxiliar/auxiliarMovie";
+import { useRouter } from "next/navigation";
+
+export interface Props {
+  movie: Movie;
+}
 
 export default function HomePage() {
   const [category, setCategory] = useState<string>("Inicio");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const router = useRouter();
 
   useEffect(() => {
     getMovies();
@@ -58,7 +65,7 @@ export default function HomePage() {
           alt="background"
           quality={100}
         />
-        <div className="homePage-title">Bem vindo ao App movies!</div>
+        <div className="homePage-title">Bem vindo ao Já vi esse filme?</div>
         <div className="homePage-form">
           <form>
             <input type="text" placeholder="Busque um filme" />
@@ -69,11 +76,15 @@ export default function HomePage() {
         </div>
       </section>
       <section className="homePage-movieList">
-        <div className="homePage-movieList-title">
-          <h1>Melhores filmes</h1>
-          <IoIosArrowForward className="homePage-iconArrow" />
+        <div className="homePage-title-container">
+          <div className="homePage-movieList-title">
+            <h1>Últimos Lançamentos</h1>
+            <IoIosArrowForward className="homePage-iconArrow" />
+          </div>
         </div>
-        <div className="homePage-movieList-card"></div>
+        <div className="homePage-movieList-card">
+          <AuxiliarMovie movies={movies} />
+        </div>
       </section>
     </>
   );

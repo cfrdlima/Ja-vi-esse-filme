@@ -1,3 +1,18 @@
+* {
+  /* Ocultar barras de rolagem */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 72px);
+}
+
 .homePage-search {
   padding: 5rem 3%;
   display: flex;
@@ -105,49 +120,42 @@
 }
 
 .homePage-movieList {
+  display: flex;
+  flex-direction: column;
   padding: 5%;
   color: aliceblue;
+  gap: 15px;
+  overflow-y: hidden;
+  max-height: 850px;
 
-  .homePage-movieList-title {
+  .homePage-title-container {
     display: flex;
-    align-items: center;
-    gap: 10px;
 
-    h1 {
-      font-size: 2rem;
-    }
+    .homePage-movieList-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
 
-    .homePage-iconArrow {
-      width: 25px;
-      height: 30px;
+      h1 {
+        font-size: 2rem;
+      }
+
+      .homePage-iconArrow {
+        width: 25px;
+        height: 30px;
+      }
     }
   }
 
   .homePage-movieList-card {
-    padding: 24px 3%;
+    overflow: hidden;
+    height: 350px;
+    width: auto;
+    white-space: nowrap;
+    text-align: center;
+    padding-bottom: 10px !important;
     display: flex;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    list-style: none;
-    width: 100%;
-
-    .slick-slider {
-      .slick-prev,
-      .slick-next {
-        z-index: 1;
-        width: 50px;
-        height: 50px;
-      }
-
-      .slick-prev:before,
-      .slick-next:before {
-        font-size: 30px;
-        color: #fff;
-      }
-    }
-
-    .slick-dots {
-      bottom: -25px;
-    }
+    align-items: center;
+    gap: 10px;
   }
 }

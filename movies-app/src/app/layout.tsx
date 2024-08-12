@@ -5,7 +5,7 @@ import "./globals.scss";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "App movies",
+  title: "Já vi esse filme?",
   description: "Gerencie seus filmes e series",
 };
 
