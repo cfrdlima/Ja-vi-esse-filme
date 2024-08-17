@@ -17,6 +17,7 @@ export default function HomePage() {
   const { movies: movies2024, isLoading: isLoading2024 } = useMovies({
     primary_release_year: "2024",
   });
+
   const { movies: horrorMovies, isLoading: isLoadingHorror } = useMovies({
     primary_release_year: "2024",
     with_genres: "27",

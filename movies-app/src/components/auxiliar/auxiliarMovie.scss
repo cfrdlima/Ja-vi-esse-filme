@@ -32,6 +32,7 @@
   overflow: hidden;
   color: #fff;
   transition: transform 0.3s ease;
+  margin-top: 7rem;
 }
 
 .movie-card:hover {
@@ -50,7 +51,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  pointer-events: none; /* Deixa os botões transparentes para clique sobre os filmes */
+  pointer-events: none;
+  margin-top: 3rem;
 }
 
 .movie-list-nav button {
@@ -59,7 +61,7 @@
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
-  pointer-events: all; /* Habilita interação com os botões */
+  pointer-events: all;
   padding: 0 15px;
   transition: background-color 0.3s ease;
 }
@@ -74,5 +76,5 @@
 
 .movie-list-nav .prev {
   left: 0;
-  transform: translateY(-50%) rotate(180deg); /* Gira a seta para a esquerda */
+  transform: rotate(180deg); /* Gira a seta para a esquerda */
 }
