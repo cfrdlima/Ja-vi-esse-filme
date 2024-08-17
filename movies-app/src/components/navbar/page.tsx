@@ -37,7 +37,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 onClick={(e) => {
                   e.preventDefault();
                   setCategory("Inicio");
-                  router.push("/Pages/Inicio");
+                  window.location.href = "/Pages/Inicio";
                 }}
               >
                 Início
@@ -49,7 +49,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 onClick={(e) => {
                   e.preventDefault();
                   setCategory("Filmes");
-                  router.push("/Pages/MovieList");
+                  window.location.href = "/Pages/MovieList";
                 }}
               >
                 Filmes
@@ -61,7 +61,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 onClick={(e) => {
                   e.preventDefault();
                   setCategory("Series");
-                  router.push("/Pages/SeriesList");
+                  window.location.href = "/Pages/SeriesList";
                 }}
               >
                 Séries

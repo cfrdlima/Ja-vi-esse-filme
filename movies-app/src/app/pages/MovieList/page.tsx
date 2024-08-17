@@ -6,7 +6,7 @@ import axios from "axios";
 import { Movie } from "@/types/movie";
 import MovieCard from "../MovieCard";
 import ReactLoading from "react-loading";
-import Navbar from "../navbar/page";
+import Navbar from "../../../components/navbar/page";
 
 type Category = string;
 

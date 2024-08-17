@@ -1,5 +1,5 @@
 import { Series } from "@/types/series";
-import StarRating from "../StarRating/indext";
+import StarRating from "../../../components/StarRating/indext";
 import "./index.scss";
 
 export interface Props {

@@ -6,7 +6,7 @@ import axios from "axios";
 import { Series } from "@/types/series";
 import SeriesCard from "../SeriesCard";
 import ReactLoading from "react-loading";
-import Navbar from "../navbar/page";
+import Navbar from "../../../components/navbar/page";
 
 type Category = string;
 

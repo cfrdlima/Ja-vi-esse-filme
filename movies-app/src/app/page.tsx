@@ -3,11 +3,9 @@
 import React, { useState } from "react";
 import sofaImage from "./assets/sofa.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import "./page.scss";
 
 export default function Home() {
-  const router = useRouter();
   return (
     <div>
       <div className="card">
@@ -16,7 +14,10 @@ export default function Home() {
         <form className="form">
           <input type="email" placeholder="Usuário" />
           <input type="password" placeholder="Senha" />
-          <button type="button" onClick={() => router.push("/Pages/Inicio")}>
+          <button
+            type="button"
+            onClick={() => (window.location.href = "/Pages/Inicio")}
+          >
             Entrar
           </button>
         </form>
