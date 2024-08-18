@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useMovies } from "@/hooks/useSearchMovies";
 import "./page.scss";
@@ -9,10 +9,6 @@ import AuxiliarSearchMovie from "@/components/auxiliar/auxiliarSearchMovie";
 import { Movie } from "@/types/movie";
 
 type Category = string;
-
-interface SearchResultsProps {
-  movies: Movie[];
-}
 
 export default function Search() {
   const searchParams = useSearchParams();
@@ -23,13 +19,19 @@ export default function Search() {
     query: `${query}`,
   });
 
-  console.log(moviesSearch);
+  if (isLoadingMovieSearch) {
+    return <div className="loading-message">Carregando...</div>;
+  }
+
+  if (moviesSearch.length === 0) {
+    return <div className="no-movies-message">Nenhum filme encontrado</div>;
+  }
 
   return (
     <>
       <Navbar currentCategory={category} setCategory={setCategory} />
       <ul className="movie-list">
-        {moviesSearch.map((movie) => (
+        {moviesSearch.map((movie: Movie) => (
           <AuxiliarSearchMovie key={movie.id} movie={movie} />
         ))}
       </ul>

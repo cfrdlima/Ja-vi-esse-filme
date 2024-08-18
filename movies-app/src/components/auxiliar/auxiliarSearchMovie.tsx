@@ -3,10 +3,12 @@ import StarRating from "../StarRating/indext";
 import "./auxiliarSearchMovie.scss";
 
 export interface Props {
-  movie: Movie; // Garantir que é singular aqui
+  movie: Movie;
 }
 
 export default function AuxiliarSearchMovie({ movie }: Props) {
+  console.log(movie);
+
   return (
     <li className="movie-card">
       <div className="movie-poster">
