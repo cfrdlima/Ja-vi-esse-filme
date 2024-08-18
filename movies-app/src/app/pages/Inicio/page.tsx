@@ -16,6 +16,7 @@ export default function HomePage() {
 
   const { movies: movies2024, isLoading: isLoading2024 } = useMovies({
     primary_release_year: "2024",
+    without_genres: "16",
   });
 
   const { movies: horrorMovies, isLoading: isLoadingHorror } = useMovies({
@@ -23,6 +24,14 @@ export default function HomePage() {
     with_genres: "27",
     sort_by: "popularity.desc",
     include_adult: "true",
+  });
+
+  const { movies: actionMovies, isLoading: isLoadingAction } = useMovies({
+    primary_release_year: "2024",
+    with_genres: "28",
+    sort_by: "popularity.desc",
+    include_adult: "true",
+    without_genres: "16",
   });
 
   if (isLoading2024) {
@@ -73,6 +82,17 @@ export default function HomePage() {
         </div>
         <div className="homePage-movieList-card">
           <AuxiliarMovie movies={horrorMovies} />
+        </div>
+      </section>
+      <section className="homePage-movieList">
+        <div className="homePage-title-container">
+          <div className="homePage-movieList-title">
+            <h1>Últimos lançamentos Ação</h1>
+            <IoIosArrowForward className="homePage-iconArrow" />
+          </div>
+        </div>
+        <div className="homePage-movieList-card">
+          <AuxiliarMovie movies={actionMovies} />
         </div>
       </section>
     </>

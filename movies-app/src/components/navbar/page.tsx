@@ -36,8 +36,8 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 className={currentCategory === "Inicio" ? "active" : ""}
                 onClick={(e) => {
                   e.preventDefault();
-                  setCategory("Inicio");
                   window.location.href = "/Pages/Inicio";
+                  setCategory("Inicio");
                 }}
               >
                 Início
@@ -48,8 +48,8 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 className={currentCategory === "Filmes" ? "active" : ""}
                 onClick={(e) => {
                   e.preventDefault();
-                  setCategory("Filmes");
                   window.location.href = "/Pages/MovieList";
+                  setCategory("Filmes");
                 }}
               >
                 Filmes
@@ -60,8 +60,8 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 className={currentCategory === "Series" ? "active" : ""}
                 onClick={(e) => {
                   e.preventDefault();
-                  setCategory("Series");
                   window.location.href = "/Pages/SeriesList";
+                  setCategory("Series");
                 }}
               >
                 Séries
