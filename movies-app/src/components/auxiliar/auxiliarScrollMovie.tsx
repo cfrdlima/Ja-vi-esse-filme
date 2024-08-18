@@ -1,12 +1,12 @@
 import { useRef } from "react";
 import { Movie } from "@/types/movie";
-import "./auxiliarMovie.scss";
+import "./auxiliarScrollMovie.scss";
 
 export interface Props {
   movies: Movie[];
 }
 
-export default function AuxiliarMovie({ movies }: Props) {
+export default function AuxiliarScrollMovie({ movies }: Props) {
   const movieListRef = useRef<HTMLUListElement>(null);
 
   const scrollLeft = () => {

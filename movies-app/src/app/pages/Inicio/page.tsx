@@ -8,11 +8,24 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import movieBackground from "../../assets/movie_background.jpg";
 import { IoIosArrowForward } from "react-icons/io";
 import ReactLoading from "react-loading";
-import AuxiliarMovie from "@/components/auxiliar/auxiliarMovie";
 import { useMovies } from "@/hooks/useMovies";
+import { useRouter } from "next/navigation";
+import AuxiliarScrollMovie from "@/components/auxiliar/auxiliarScrollMovie";
 
 export default function HomePage() {
   const [category, setCategory] = useState<string>("Inicio");
+  const [search, setSearch] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!search) {
+      return;
+    } else {
+      router.push(`/Pages/Search?q=${search}`);
+      setSearch("");
+    }
+  };
 
   const { movies: movies2024, isLoading: isLoading2024 } = useMovies({
     primary_release_year: "2024",
@@ -54,8 +67,13 @@ export default function HomePage() {
         />
         <div className="homePage-title">Bem vindo ao Já vi esse filme?</div>
         <div className="homePage-form">
-          <form>
-            <input type="text" placeholder="Busque um filme" />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Busque um filme"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
             <button type="submit">
               <BiSearchAlt2 className="homePage-icon" />
             </button>
@@ -70,7 +88,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="homePage-movieList-card">
-          <AuxiliarMovie movies={movies2024} />
+          <AuxiliarScrollMovie movies={movies2024} />
         </div>
       </section>
       <section className="homePage-movieList">
@@ -81,7 +99,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="homePage-movieList-card">
-          <AuxiliarMovie movies={horrorMovies} />
+          <AuxiliarScrollMovie movies={horrorMovies} />
         </div>
       </section>
       <section className="homePage-movieList">
@@ -92,7 +110,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="homePage-movieList-card">
-          <AuxiliarMovie movies={actionMovies} />
+          <AuxiliarScrollMovie movies={actionMovies} />
         </div>
       </section>
     </>
