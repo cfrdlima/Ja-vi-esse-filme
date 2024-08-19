@@ -5,7 +5,7 @@ const API_KEY = 'eabdfc6fc4fac646d5b41dc98dd4414e';
 export const getMovies = async (params: object) => {
   try {
     const response = await axios.get(
-      "https://api.themoviedb.org/3/search/movie", {
+      "https://api.themoviedb.org/3/search/multi", {
       params: {
         api_key: API_KEY,
         language: 'pt-br',

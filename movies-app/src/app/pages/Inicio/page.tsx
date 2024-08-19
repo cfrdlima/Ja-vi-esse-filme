@@ -22,7 +22,8 @@ export default function HomePage() {
     if (!search) {
       return;
     } else {
-      router.push(`/Pages/Search?q=${search}`);
+      const searchQuery = new URLSearchParams({ q: search }).toString();
+      window.location.href = `/Pages/Search?${searchQuery}`;
       setSearch("");
     }
   };
@@ -70,7 +71,7 @@ export default function HomePage() {
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Busque um filme"
+              placeholder="Buscar"
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />
