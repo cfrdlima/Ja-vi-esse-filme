@@ -1,31 +1,29 @@
-import { Movie } from "@/types/movie";
+import { Multi } from "@/types/multi";
 import StarRating from "../StarRating/indext";
 import "./auxiliarSearchMovie.scss";
 
 export interface Props {
-  movie: Movie;
+  multi: Multi;
 }
 
-export default function AuxiliarSearchMovie({ movie }: Props) {
-  console.log(movie);
-
+export default function AuxiliarSearchMovie({ multi }: Props) {
   return (
     <li className="movie-card">
       <div className="movie-poster">
         <img
-          src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-          alt={movie.title}
+          src={`https://image.tmdb.org/t/p/original${multi.poster_path}`}
+          alt={multi.title}
         />
       </div>
       <div className="movie-infos">
-        <p className="movie-title">{movie.title}</p>
-        {movie.vote_average > 0 && <StarRating rating={movie.vote_average} />}
+        <p className="movie-title">{multi.title || multi.name}</p>
+        {multi.vote_average > 0 && <StarRating rating={multi.vote_average} />}
         <div className="hidden-content">
-          {movie.overview && (
+          {multi.overview && (
             <p className="description">
-              {movie.overview.length > 100
-                ? `${movie.overview.substring(0, 100)}...`
-                : movie.overview}
+              {multi.overview.length > 100
+                ? `${multi.overview.substring(0, 100)}...`
+                : multi.overview}
             </p>
           )}
           <button className="btn-default">Ver mais</button>

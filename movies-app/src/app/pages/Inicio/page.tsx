@@ -15,7 +15,6 @@ import AuxiliarScrollMovie from "@/components/auxiliar/auxiliarScrollMovie";
 export default function HomePage() {
   const [category, setCategory] = useState<string>("Inicio");
   const [search, setSearch] = useState("");
-  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

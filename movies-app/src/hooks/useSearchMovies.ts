@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { getMovies } from '../services/movieSearchService';
-import { Movie } from '@/types/movie';
+import { Multi } from '@/types/multi';
 
 export const useMovies = (params: object) => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Multi[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {

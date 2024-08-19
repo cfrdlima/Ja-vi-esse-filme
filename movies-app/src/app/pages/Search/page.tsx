@@ -6,14 +6,15 @@ import { useMovies } from "@/hooks/useSearchMovies";
 import "./page.scss";
 import Navbar from "../../../components/navbar/page";
 import AuxiliarSearchMovie from "@/components/auxiliar/auxiliarSearchMovie";
-import { Movie } from "@/types/movie";
+import { Multi } from "@/types/multi";
 
 type Category = string;
 
 export default function Search() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
-  const [category, setCategory] = useState<Category>("Busca");
+  const stringSearch = `Busca relacionada a ${query}`;
+  const [category, setCategory] = useState<Category>(stringSearch);
 
   const { movies: moviesSearch, isLoading: isLoadingMovieSearch } = useMovies({
     query: `${query}`,
@@ -31,8 +32,8 @@ export default function Search() {
     <>
       <Navbar currentCategory={category} setCategory={setCategory} />
       <ul className="movie-list">
-        {moviesSearch.map((movie: Movie) => (
-          <AuxiliarSearchMovie key={movie.id} movie={movie} />
+        {moviesSearch.map((multi: Multi) => (
+          <AuxiliarSearchMovie key={multi.id} multi={multi} />
         ))}
       </ul>
     </>
