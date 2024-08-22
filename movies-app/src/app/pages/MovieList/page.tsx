@@ -7,6 +7,7 @@ import { Movie } from "@/types/movie";
 import MovieCard from "../MovieCard";
 import ReactLoading from "react-loading";
 import Navbar from "../../../components/navbar/page";
+import ButtonPage from "@/components/buttonPage/buttonPage";
 
 type Category = string;
 
@@ -14,12 +15,14 @@ export default function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [category, setCategory] = useState<Category>("Filmes");
+  const [currentPage, setCurrentPage] = useState<number>(1); // Estado para página atual
 
   useEffect(() => {
-    getMovies();
-  }, []);
+    getMovies(currentPage);
+  }, [currentPage]);
 
-  const getMovies = async () => {
+  const getMovies = async (page: number) => {
+    setIsLoading(true);
     try {
       const response = await axios.get(
         "https://api.themoviedb.org/3/discover/movie",
@@ -28,6 +31,7 @@ export default function MovieList() {
             api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
             language: "pt-br",
             primary_release_year: "2024",
+            page: page,
           },
         }
       );
@@ -37,6 +41,24 @@ export default function MovieList() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const handleLastPage = () => {
+    setCurrentPage(500);
+  };
+
+  const handleFirstPage = () => {
+    setCurrentPage(1);
   };
 
   if (isLoading) {
@@ -50,11 +72,23 @@ export default function MovieList() {
   return (
     <>
       <Navbar currentCategory={category} setCategory={setCategory} />
-      <ul className="movie-list">
-        {movies.map((movie) => (
-          <MovieCard movie={movie} key={movie.id} />
-        ))}
-      </ul>
+      <div className="movie-list-container">
+        <ul className="movie-list">
+          {movies.map((movie) => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
+        </ul>
+        <div>
+          <ButtonPage
+            firstPage={handleFirstPage}
+            currentPage={currentPage}
+            onNextPage={handleNextPage}
+            onPreviousPage={handlePreviousPage}
+            lastPage={handleLastPage}
+            lastPageNumber={499}
+          />
+        </div>
+      </div>
     </>
   );
 }

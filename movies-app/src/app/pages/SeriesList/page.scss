@@ -1,16 +1,23 @@
+.series-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+
+  .series-list {
+    padding: 24px 3%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    list-style: none;
+    width: 100%;
+    margin-top: 5rem;
+  }
+}
+
 .loading-container {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 72px);
-}
-
-.series-list {
-  padding: 24px 3%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  list-style: none;
-  width: 100%;
-  margin-top: 5rem;
 }

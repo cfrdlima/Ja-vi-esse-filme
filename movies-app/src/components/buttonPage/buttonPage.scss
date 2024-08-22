@@ -1,0 +1,39 @@
+.controller-page-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  .current-page {
+    font-size: 24px;
+    font-weight: bold;
+    color: aliceblue;
+  }
+
+  .button-arrow-left {
+    border: none;
+    border-radius: 10%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transform: rotate(180deg);
+
+    .arrow-left {
+      width: 30px;
+      height: 30px;
+      transform: rotate(180deg);
+    }
+  }
+
+  .button-arrow-right {
+    border: none;
+    border-radius: 10%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+    .arrow-right {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

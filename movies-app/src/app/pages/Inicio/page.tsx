@@ -9,7 +9,6 @@ import movieBackground from "../../assets/movie_background.jpg";
 import { IoIosArrowForward } from "react-icons/io";
 import ReactLoading from "react-loading";
 import { useMovies } from "@/hooks/useMovies";
-import { useRouter } from "next/navigation";
 import AuxiliarScrollMovie from "@/components/auxiliar/auxiliarScrollMovie";
 
 export default function HomePage() {
