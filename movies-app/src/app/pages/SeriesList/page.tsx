@@ -31,6 +31,7 @@ export default function SeriesList() {
         sort_by: "popularity_desc",
         include_adult: "true",
         with_original_language: "en",
+        language: "pt-BR",
         page: page,
       },
     }).then((response) => {
