@@ -28,13 +28,15 @@ export default function SeriesList() {
       url: "https://api.themoviedb.org/3/discover/tv",
       params: {
         api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
-        language: "pt-br",
-        first_air_date_year: "2024",
+        sort_by: "popularity_desc",
+        include_adult: "true",
+        with_original_language: "en",
         page: page,
       },
     }).then((response) => {
       setSeries(response.data.results);
       setLastPage(response.data.total_pages);
+      console.log(response.data.total_pages);
     });
 
     setIsLoading(false);
@@ -51,12 +53,7 @@ export default function SeriesList() {
   };
 
   const handleLastPage = () => {
-    if (lastPage !== undefined) {
-      console.log("Indo para a última página:", lastPage);
-      setCurrentPage(lastPage);
-    } else {
-      console.warn("A última página ainda não foi carregada.");
-    }
+    setCurrentPage(500);
   };
 
   const handleFirstPage = () => {
@@ -87,7 +84,7 @@ export default function SeriesList() {
             onNextPage={handleNextPage}
             onPreviousPage={handlePreviousPage}
             lastPage={handleLastPage}
-            lastPageNumber={374}
+            lastPageNumber={499}
           />
         </div>
       </div>
