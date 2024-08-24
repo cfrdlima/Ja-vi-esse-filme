@@ -10,9 +10,11 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useLocalStorageState } from "@toolpad/core";
 import { IoIosArrowForward } from "react-icons/io";
+import { useFilterOrder } from "@/hooks/useFilterOrder";
 
 export default function FilterMovies() {
   const { genres = [], isLoading } = useFilterGenres();
+  const { order = [] } = useFilterOrder();
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = React.useState<Dayjs | null>(dayjs("2022-04-17"));
   const [valueText, setValueText] = useLocalStorageState(
@@ -48,8 +50,8 @@ export default function FilterMovies() {
               className="filter-combobox"
               disablePortal
               id="combo-box-sort"
-              options={genres}
-              getOptionLabel={(option) => option.name || ""}
+              options={order}
+              getOptionLabel={(option) => option.label || ""}
               sx={{ width: "100%" }}
               renderInput={(params) => (
                 <TextField {...params} label="Ordenar por" />
