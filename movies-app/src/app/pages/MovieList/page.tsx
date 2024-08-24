@@ -8,6 +8,7 @@ import MovieCard from "../MovieCard";
 import ReactLoading from "react-loading";
 import Navbar from "../../../components/navbar/page";
 import ButtonPage from "@/components/buttonPage/buttonPage";
+import FilterMovies from "@/components/filter/filterMovies";
 
 type Category = string;
 
@@ -71,23 +72,32 @@ export default function MovieList() {
 
   return (
     <>
-      <Navbar currentCategory={category} setCategory={setCategory} />
-      <div className="movie-list-container">
-        <ul className="movie-list">
-          {movies.map((movie) => (
-            <MovieCard movie={movie} key={movie.id} />
-          ))}
-        </ul>
-        <div>
-          <ButtonPage
-            firstPage={handleFirstPage}
-            currentPage={currentPage}
-            onNextPage={handleNextPage}
-            onPreviousPage={handlePreviousPage}
-            lastPage={handleLastPage}
-            lastPageNumber={499}
-          />
-        </div>
+      <div className="movies-container">
+        <section className="movie-navbar-container">
+          <Navbar currentCategory={category} setCategory={setCategory} />
+        </section>
+        <section className="movie-filter-container">
+          <FilterMovies />
+        </section>
+        <section className="movie-list-container">
+          <div className="movie-list-container">
+            <ul className="movie-list">
+              {movies.map((movie) => (
+                <MovieCard movie={movie} key={movie.id} />
+              ))}
+            </ul>
+            <div>
+              <ButtonPage
+                firstPage={handleFirstPage}
+                currentPage={currentPage}
+                onNextPage={handleNextPage}
+                onPreviousPage={handlePreviousPage}
+                lastPage={handleLastPage}
+                lastPageNumber={499}
+              />
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

@@ -8,6 +8,7 @@ import SeriesCard from "../SeriesCard";
 import ReactLoading from "react-loading";
 import Navbar from "../../../components/navbar/page";
 import ButtonPage from "@/components/buttonPage/buttonPage";
+import FilterSeries from "@/components/filter/filterSeries";
 
 type Category = string;
 
@@ -71,22 +72,29 @@ export default function SeriesList() {
 
   return (
     <>
-      <Navbar currentCategory={category} setCategory={setCategory} />
-      <div className="series-list-container">
-        <ul className="series-list">
-          {series.map((serie) => (
-            <SeriesCard series={serie} key={serie.id} />
-          ))}
-        </ul>
-        <div>
-          <ButtonPage
-            firstPage={handleFirstPage}
-            currentPage={currentPage}
-            onNextPage={handleNextPage}
-            onPreviousPage={handlePreviousPage}
-            lastPage={handleLastPage}
-            lastPageNumber={499}
-          />
+      <div className="series-container">
+        <section className="serie-navbar-container">
+          <Navbar currentCategory={category} setCategory={setCategory} />
+        </section>
+        <section className="serie-filter-container">
+          <FilterSeries />
+        </section>
+        <div className="series-list-container">
+          <ul className="series-list">
+            {series.map((serie) => (
+              <SeriesCard series={serie} key={serie.id} />
+            ))}
+          </ul>
+          <div>
+            <ButtonPage
+              firstPage={handleFirstPage}
+              currentPage={currentPage}
+              onNextPage={handleNextPage}
+              onPreviousPage={handlePreviousPage}
+              lastPage={handleLastPage}
+              lastPageNumber={499}
+            />
+          </div>
         </div>
       </div>
     </>

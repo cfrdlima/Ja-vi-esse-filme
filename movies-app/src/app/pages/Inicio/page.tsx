@@ -69,7 +69,7 @@ export default function HomePage() {
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Buscar"
+              placeholder="Buscar por filmes ou series"
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />

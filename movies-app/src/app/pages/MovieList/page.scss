@@ -1,17 +1,25 @@
-.movie-list-container {
+.movies-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 3rem;
+  .movie-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
 
-  .movie-list {
-    padding: 24px 3%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    list-style: none;
-    width: 100%;
-    margin-top: 5rem;
+    .movie-list {
+      padding: 24px 3%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      list-style: none;
+      width: 100%;
+      margin-top: 2rem;
+    }
+  }
+
+  .movie-filter-container {
+    padding: 0 3%;
   }
 }
 

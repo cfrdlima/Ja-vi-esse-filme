@@ -1,0 +1,98 @@
+.filter-container {
+  border-radius: 4px;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease-in-out,
+    padding 0.3s ease-in-out;
+  max-height: 50px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  &.open {
+    max-height: 500px;
+    padding: 20px;
+    background-color: aquamarine;
+  }
+
+  .filter-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      flex: 1;
+    }
+
+    .homePage-iconArrow {
+      width: 25px;
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+
+  .filter-content-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    transition: opacity 0.3s ease-in-out;
+    gap: 10px;
+
+    .filter-content-combo {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .filter-combobox {
+        width: 100%;
+      }
+    }
+
+    .filter-content-datePicker-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .MuiDatePicker-root {
+        width: 100%;
+      }
+    }
+
+    .filter-content-inputText-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .filter-container {
+      padding: 8px;
+    }
+
+    .filter-header h3 {
+      font-size: 16px;
+    }
+
+    .filter-content-container {
+      gap: 5px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .filter-container {
+      padding: 12px;
+    }
+
+    .filter-header h3 {
+      font-size: 17px;
+    }
+
+    .filter-content-container {
+      gap: 8px;
+    }
+  }
+}

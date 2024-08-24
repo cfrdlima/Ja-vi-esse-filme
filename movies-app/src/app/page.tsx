@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <div className="card">
         <Image className="logo" src={sofaImage} alt="sofa" />
-        <h2>Bem Vindo</h2>
+        <h2>Bem Vindo ao Já vi esse filme?</h2>
         <form className="form">
           <input type="email" placeholder="Usuário" />
           <input type="password" placeholder="Senha" />
