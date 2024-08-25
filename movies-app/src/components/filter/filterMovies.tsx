@@ -16,7 +16,7 @@ export default function FilterMovies() {
   const { genres = [], isLoading } = useFilterGenres();
   const { order = [] } = useFilterOrder();
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs("2022-04-17"));
+  const [value, setValue] = useState<Dayjs | null>(dayjs());
   const [valueText, setValueText] = useLocalStorageState(
     "string-value",
     "Initial Value"
@@ -69,8 +69,9 @@ export default function FilterMovies() {
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
+                defaultValue={dayjs().startOf("day")}
+                format="DD/MM/YYYY"
                 label="Até"
-                value={value}
                 onChange={(newValue) => setValue(newValue)}
                 sx={{ width: "100%" }}
               />
