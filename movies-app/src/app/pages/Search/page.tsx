@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useMovies } from "@/hooks/useSearchMovies";
+import { useMoviesAndSeries } from "@/hooks/useSearchMovies";
 import "./page.scss";
 import Navbar from "../../../components/navbar/page";
 import AuxiliarSearchMovie from "@/components/auxiliar/auxiliarSearchMovie";
@@ -16,9 +16,10 @@ export default function Search() {
   const stringSearch = `Busca relacionada a ${query}`;
   const [category, setCategory] = useState<Category>(stringSearch);
 
-  const { movies: moviesSearch, isLoading: isLoadingMovieSearch } = useMovies({
-    query: `${query}`,
-  });
+  const { movies: moviesSearch, isLoading: isLoadingMovieSearch } =
+    useMoviesAndSeries({
+      query: `${query}`,
+    });
 
   if (isLoadingMovieSearch) {
     return <div className="loading-message">Carregando...</div>;

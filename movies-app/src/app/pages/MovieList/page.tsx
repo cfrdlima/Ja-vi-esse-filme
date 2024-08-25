@@ -9,6 +9,8 @@ import ReactLoading from "react-loading";
 import Navbar from "../../../components/navbar/page";
 import ButtonPage from "@/components/buttonPage/buttonPage";
 import FilterMovies from "@/components/filter/filterMovies";
+import { useMoviesAndSeries } from "@/hooks/useSearchMovies";
+import { getMoviesAndSeries } from "@/services/movieAndSeriesSearchService";
 
 type Category = string;
 
@@ -16,13 +18,24 @@ export default function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [category, setCategory] = useState<Category>("Filmes");
-  const [currentPage, setCurrentPage] = useState<number>(1); // Estado para página atual
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [filters, setFilters] = useState<{
+    genre: any;
+    order: any;
+    startDate: string | null;
+    searchText: string;
+  }>({
+    genre: null,
+    order: null,
+    startDate: null,
+    searchText: "",
+  });
 
   useEffect(() => {
-    getMovies(currentPage);
-  }, [currentPage]);
+    getMovies(currentPage, filters);
+  }, [currentPage, filters]);
 
-  const getMovies = async (page: number) => {
+  const getMovies = async (page: number, filters: any) => {
     setIsLoading(true);
     try {
       const response = await axios.get(
@@ -31,8 +44,11 @@ export default function MovieList() {
           params: {
             api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
             language: "pt-br",
-            primary_release_year: "2024",
             page: page,
+            with_genres: filters.genre?.id || null,
+            sort_by: filters.order?.map || null,
+            with_keywords: filters.searchText || null,
+            year: filters.startDate || null,
           },
         }
       );
@@ -62,6 +78,15 @@ export default function MovieList() {
     setCurrentPage(1);
   };
 
+  const handleSearch = (filters: {
+    genre: any;
+    order: any;
+    startDate: string | null;
+    searchText: string | "";
+  }) => {
+    setFilters(filters);
+  };
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -77,7 +102,7 @@ export default function MovieList() {
           <Navbar currentCategory={category} setCategory={setCategory} />
         </section>
         <section className="movie-filter-container">
-          <FilterMovies />
+          <FilterMovies onSearch={handleSearch} />
         </section>
         <section className="movie-list-container">
           <div className="movie-list-container">

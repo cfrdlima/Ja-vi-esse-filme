@@ -12,11 +12,13 @@ import { useLocalStorageState } from "@toolpad/core";
 import { IoIosArrowForward } from "react-icons/io";
 import { useFilterOrder } from "@/hooks/useFilterOrder";
 
-export default function FilterMovies() {
-  const { genres = [], isLoading } = useFilterGenres();
+export default function FilterMovies({ onSearch }: FilterMoviesProps) {
+  const { genres = [] } = useFilterGenres();
   const { order = [] } = useFilterOrder();
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState<Dayjs | null>(dayjs());
+  const [valueFrom, setValueFrom] = useState<Dayjs | null>();
+  const [selectedGenre, setSelectedGenre] = useState<any>(null);
+  const [selectedOrder, setSelectedOrder] = useState<any>(null);
   const [valueText, setValueText] = useLocalStorageState(
     "string-value",
     "Initial Value"
@@ -24,6 +26,16 @@ export default function FilterMovies() {
 
   const toggleFilter = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleSearch = () => {
+    const searchParams = {
+      genre: selectedGenre,
+      order: selectedOrder,
+      startDate: valueFrom ? valueFrom.format("YYYY") : null,
+      searchText: valueText || "",
+    };
+    onSearch(searchParams);
   };
 
   return (
@@ -42,6 +54,7 @@ export default function FilterMovies() {
               options={genres}
               getOptionLabel={(option) => option.name || ""}
               sx={{ width: "100%" }}
+              onChange={(event, newValue) => setSelectedGenre(newValue)}
               renderInput={(params) => <TextField {...params} label="Gênero" />}
             />
           </div>
@@ -53,6 +66,7 @@ export default function FilterMovies() {
               options={order}
               getOptionLabel={(option) => option.label || ""}
               sx={{ width: "100%" }}
+              onChange={(event, newValue) => setSelectedOrder(newValue)}
               renderInput={(params) => (
                 <TextField {...params} label="Ordenar por" />
               )}
@@ -61,35 +75,25 @@ export default function FilterMovies() {
           <div className="filter-content-datePicker-container">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="De"
-                value={null}
-                onChange={(newValue) => setValue(newValue)}
-                sx={{ width: "100%" }}
-              />
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                defaultValue={dayjs().startOf("day")}
-                format="DD/MM/YYYY"
-                label="Até"
-                onChange={(newValue) => setValue(newValue)}
-                sx={{ width: "100%" }}
+                label="Ano de Lançamento"
+                onChange={(newValue) => setValueFrom(newValue)}
+                format="YYYY"
               />
             </LocalizationProvider>
           </div>
           <div className="filter-content-inputText-container">
             <Stack direction="row" spacing={1} width="100%">
               <TextField
+                label="Pesquise por filmes"
                 value={valueText}
                 onChange={(event) => setValueText(event.target.value)}
-                placeholder="Pesquise por filmes"
                 sx={{ flex: 1 }}
               />
               <Button onClick={() => setValueText("")}>Limpar</Button>
             </Stack>
           </div>
           <div className="filter-content-buttonSearch-container">
-            <Button variant="contained" disableElevation>
+            <Button variant="contained" disableElevation onClick={handleSearch}>
               Pesquisar
             </Button>
           </div>
