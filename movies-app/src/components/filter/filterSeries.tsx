@@ -6,24 +6,30 @@ import "./filterMovies.scss";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { useLocalStorageState } from "@toolpad/core";
 import { IoIosArrowForward } from "react-icons/io";
 import { useFilterOrder } from "@/hooks/useFilterOrder";
 
-export default function FilterMovies() {
-  const { genres = [], isLoading } = useFilterGenres();
+export default function FilterMovies({ onSearch }: FilterMoviesProps) {
+  const { genres = [] } = useFilterGenres();
   const { order = [] } = useFilterOrder();
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs("2022-04-17"));
-  const [valueText, setValueText] = useLocalStorageState(
-    "string-value",
-    "Initial Value"
-  );
-
+  const [valueFrom, setValueFrom] = useState<Dayjs | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState<any>(null);
+  const [search, setSearch] = useState("");
+  const [selectedOrder, setSelectedOrder] = useState<any>(null);
   const toggleFilter = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleSearch = () => {
+    const searchParams = {
+      genre: selectedGenre,
+      order: selectedOrder,
+      startDate: valueFrom ? valueFrom.format("YYYY") : null,
+      searchMovie: search,
+    };
+    onSearch(searchParams);
   };
 
   return (
@@ -42,6 +48,7 @@ export default function FilterMovies() {
               options={genres}
               getOptionLabel={(option) => option.name || ""}
               sx={{ width: "100%" }}
+              onChange={(event, newValue) => setSelectedGenre(newValue)}
               renderInput={(params) => <TextField {...params} label="Gênero" />}
             />
           </div>
@@ -53,6 +60,7 @@ export default function FilterMovies() {
               options={order}
               getOptionLabel={(option) => option.label || ""}
               sx={{ width: "100%" }}
+              onChange={(event, newValue) => setSelectedOrder(newValue)}
               renderInput={(params) => (
                 <TextField {...params} label="Ordenar por" />
               )}
@@ -61,34 +69,24 @@ export default function FilterMovies() {
           <div className="filter-content-datePicker-container">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="De"
-                value={null}
-                onChange={(newValue) => setValue(newValue)}
-                sx={{ width: "100%" }}
-              />
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                label="Até"
-                value={value}
-                onChange={(newValue) => setValue(newValue)}
-                sx={{ width: "100%" }}
+                label="Ano de Lançamento"
+                onChange={(newValue) => setValueFrom(newValue)}
+                format="YYYY"
               />
             </LocalizationProvider>
           </div>
-          <div className="filter-content-inputText-container">
-            <Stack direction="row" spacing={1} width="100%">
-              <TextField
-                value={valueText}
-                onChange={(event) => setValueText(event.target.value)}
-                placeholder="Pesquise por series"
-                sx={{ flex: 1 }}
-              />
-              <Button onClick={() => setValueText("")}>Limpar</Button>
-            </Stack>
+          <div className="filter-content-movieByName">
+            <TextField
+              id="outlined-basic"
+              label="Buscar por series"
+              variant="outlined"
+              className="formSubmit-text"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
           </div>
           <div className="filter-content-buttonSearch-container">
-            <Button variant="contained" disableElevation>
+            <Button variant="contained" disableElevation onClick={handleSearch}>
               Pesquisar
             </Button>
           </div>

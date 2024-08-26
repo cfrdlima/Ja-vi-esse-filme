@@ -15,33 +15,72 @@ type Category = string;
 export default function SeriesList() {
   const [series, setSeries] = useState<Series[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [category, setCategory] = useState<Category>("Series");
+  const [category, setCategory] = useState<Category>("Filmes");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [lastPage, setLastPage] = useState<number>();
+  const [filters, setFilters] = useState<{
+    genre: any;
+    order: any;
+    startDate: string | null;
+    searchMovie: string;
+  }>({
+    genre: null,
+    order: null,
+    startDate: null,
+    searchMovie: "",
+  });
 
   useEffect(() => {
-    getSeries(currentPage);
-  }, [currentPage]);
+    if (!filters.searchMovie || filters.searchMovie.trim() === "") {
+      getSeries(currentPage, filters);
+    } else {
+      getSeriesByName(currentPage, filters);
+    }
+  }, [currentPage, filters]);
 
-  const getSeries = async (page: number) => {
-    await axios({
-      method: "GET",
-      url: "https://api.themoviedb.org/3/discover/tv",
-      params: {
-        api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
-        sort_by: "popularity_desc",
-        include_adult: "true",
-        with_original_language: "en",
-        language: "pt-BR",
-        page: page,
-      },
-    }).then((response) => {
+  const getSeries = async (page: number, filters: any) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/discover/tv",
+        {
+          params: {
+            api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
+            language: "pt-br",
+            page: page,
+            with_genres: filters.genre?.id || null,
+            sort_by: filters.order?.map || null,
+            first_air_date_year: filters.startDate || null,
+          },
+        }
+      );
       setSeries(response.data.results);
-      setLastPage(response.data.total_pages);
-      console.log(response.data.total_pages);
-    });
+    } catch (error) {
+      console.error("Error fetching series:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    setIsLoading(false);
+  const getSeriesByName = async (page: number, filters: any) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/search/tv",
+        {
+          params: {
+            api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
+            language: "pt-br",
+            page: page,
+            query: filters.searchMovie || null,
+          },
+        }
+      );
+      setSeries(response.data.results);
+    } catch (error) {
+      console.error("Error fetching series:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleNextPage = () => {
@@ -62,6 +101,15 @@ export default function SeriesList() {
     setCurrentPage(1);
   };
 
+  const handleSearch = (filters: {
+    genre: any;
+    order: any;
+    startDate: string | null;
+    searchMovie: string | " ";
+  }) => {
+    setFilters(filters);
+  };
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -77,7 +125,7 @@ export default function SeriesList() {
           <Navbar currentCategory={category} setCategory={setCategory} />
         </section>
         <section className="serie-filter-container">
-          <FilterSeries />
+          <FilterSeries onSearch={handleSearch} />
         </section>
         <div className="series-list-container">
           <ul className="series-list">
