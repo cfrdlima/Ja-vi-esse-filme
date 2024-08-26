@@ -9,8 +9,6 @@ import ReactLoading from "react-loading";
 import Navbar from "../../../components/navbar/page";
 import ButtonPage from "@/components/buttonPage/buttonPage";
 import FilterMovies from "@/components/filter/filterMovies";
-import { useMoviesAndSeries } from "@/hooks/useSearchMovies";
-import { getMoviesAndSeries } from "@/services/movieAndSeriesSearchService";
 
 type Category = string;
 
@@ -23,16 +21,20 @@ export default function MovieList() {
     genre: any;
     order: any;
     startDate: string | null;
-    searchText: string;
+    searchMovie: string;
   }>({
     genre: null,
     order: null,
     startDate: null,
-    searchText: "",
+    searchMovie: "",
   });
 
   useEffect(() => {
-    getMovies(currentPage, filters);
+    if (!filters.searchMovie || filters.searchMovie.trim() === "") {
+      getMovies(currentPage, filters);
+    } else {
+      getMoviesByName(currentPage, filters);
+    }
   }, [currentPage, filters]);
 
   const getMovies = async (page: number, filters: any) => {
@@ -47,8 +49,29 @@ export default function MovieList() {
             page: page,
             with_genres: filters.genre?.id || null,
             sort_by: filters.order?.map || null,
-            with_keywords: filters.searchText || null,
             year: filters.startDate || null,
+          },
+        }
+      );
+      setMovies(response.data.results);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getMoviesByName = async (page: number, filters: any) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/search/movie",
+        {
+          params: {
+            api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
+            language: "pt-br",
+            page: page,
+            query: filters.searchMovie || null,
           },
         }
       );
@@ -82,7 +105,7 @@ export default function MovieList() {
     genre: any;
     order: any;
     startDate: string | null;
-    searchText: string | "";
+    searchMovie: string | " ";
   }) => {
     setFilters(filters);
   };

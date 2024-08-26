@@ -1,14 +1,12 @@
+import React, { useState, useEffect } from "react";
 import { useFilterGenres } from "@/hooks/useFilterGenres";
 import { Autocomplete, TextField } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
-import React, { useState } from "react";
 import "./filterMovies.scss";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { useLocalStorageState } from "@toolpad/core";
 import { IoIosArrowForward } from "react-icons/io";
 import { useFilterOrder } from "@/hooks/useFilterOrder";
 
@@ -16,14 +14,10 @@ export default function FilterMovies({ onSearch }: FilterMoviesProps) {
   const { genres = [] } = useFilterGenres();
   const { order = [] } = useFilterOrder();
   const [isOpen, setIsOpen] = useState(false);
-  const [valueFrom, setValueFrom] = useState<Dayjs | null>();
+  const [valueFrom, setValueFrom] = useState<Dayjs | null>(null);
   const [selectedGenre, setSelectedGenre] = useState<any>(null);
+  const [search, setSearch] = useState("");
   const [selectedOrder, setSelectedOrder] = useState<any>(null);
-  const [valueText, setValueText] = useLocalStorageState(
-    "string-value",
-    "Initial Value"
-  );
-
   const toggleFilter = () => {
     setIsOpen(!isOpen);
   };
@@ -33,7 +27,7 @@ export default function FilterMovies({ onSearch }: FilterMoviesProps) {
       genre: selectedGenre,
       order: selectedOrder,
       startDate: valueFrom ? valueFrom.format("YYYY") : null,
-      searchText: valueText || "",
+      searchMovie: search,
     };
     onSearch(searchParams);
   };
@@ -81,16 +75,15 @@ export default function FilterMovies({ onSearch }: FilterMoviesProps) {
               />
             </LocalizationProvider>
           </div>
-          <div className="filter-content-inputText-container">
-            <Stack direction="row" spacing={1} width="100%">
-              <TextField
-                label="Pesquise por filmes"
-                value={valueText}
-                onChange={(event) => setValueText(event.target.value)}
-                sx={{ flex: 1 }}
-              />
-              <Button onClick={() => setValueText("")}>Limpar</Button>
-            </Stack>
+          <div className="filter-content-movieByName">
+            <TextField
+              id="outlined-basic"
+              label="Buscar por filmes"
+              variant="outlined"
+              className="formSubmit-text"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
           </div>
           <div className="filter-content-buttonSearch-container">
             <Button variant="contained" disableElevation onClick={handleSearch}>

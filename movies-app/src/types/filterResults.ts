@@ -3,6 +3,6 @@ interface FilterMoviesProps {
     genre: any;
     order: any;
     startDate: string | null;
-    searchText: string;
+    searchMovie: string | "",
   }) => void;
 }

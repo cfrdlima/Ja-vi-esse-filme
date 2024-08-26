@@ -69,6 +69,17 @@
     }
   }
 
+  .filter-content-movieByName {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+
+    .formSubmit-text {
+      font-size: 12px;
+      width: 100%;
+    }
+  }
+
   @media (max-width: 600px) {
     .filter-container {
       padding: 8px;
