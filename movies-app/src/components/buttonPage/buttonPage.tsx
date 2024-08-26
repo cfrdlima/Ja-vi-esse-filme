@@ -42,14 +42,14 @@ export default function ButtonPage({
         <button
           className="button-arrow-right"
           onClick={onNextPage}
-          disabled={currentPage > lastPageNumber}
+          disabled={currentPage >= lastPageNumber} // Desabilita se já estiver na última página
         >
           <IoIosArrowForward className="arrow-right" />
         </button>
         <button
           className="button-arrow-right"
           onClick={lastPage}
-          disabled={currentPage > lastPageNumber}
+          disabled={currentPage >= lastPageNumber} // Desabilita se já estiver na última página
         >
           <MdOutlineKeyboardDoubleArrowRight className="arrow-right" />
         </button>

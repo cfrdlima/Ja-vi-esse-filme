@@ -17,6 +17,7 @@ export default function MovieList() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [category, setCategory] = useState<Category>("Filmes");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
   const [filters, setFilters] = useState<{
     genre: any;
     order: any;
@@ -53,7 +54,9 @@ export default function MovieList() {
           },
         }
       );
+      const fetchedTotalPages = response.data.total_pages;
       setMovies(response.data.results);
+      setTotalPages(fetchedTotalPages > 500 ? 500 : fetchedTotalPages);
     } catch (error) {
       console.error("Error fetching movies:", error);
     } finally {
@@ -75,6 +78,8 @@ export default function MovieList() {
           },
         }
       );
+      const fetchedTotalPages = response.data.total_pages;
+      setTotalPages(fetchedTotalPages > 500 ? 500 : fetchedTotalPages);
       setMovies(response.data.results);
     } catch (error) {
       console.error("Error fetching movies:", error);
@@ -94,7 +99,7 @@ export default function MovieList() {
   };
 
   const handleLastPage = () => {
-    setCurrentPage(500);
+    setCurrentPage(totalPages); // Usa o total de páginas para ir para a última página
   };
 
   const handleFirstPage = () => {
@@ -141,7 +146,7 @@ export default function MovieList() {
                 onNextPage={handleNextPage}
                 onPreviousPage={handlePreviousPage}
                 lastPage={handleLastPage}
-                lastPageNumber={499}
+                lastPageNumber={totalPages}
               />
             </div>
           </div>
