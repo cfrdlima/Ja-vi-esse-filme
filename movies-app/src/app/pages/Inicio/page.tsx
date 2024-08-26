@@ -10,10 +10,14 @@ import { IoIosArrowForward } from "react-icons/io";
 import ReactLoading from "react-loading";
 import { useMovies } from "@/hooks/useMovies";
 import AuxiliarScrollMovie from "@/components/auxiliar/auxiliarScrollMovie";
+import { useMoviesTopRated } from "@/hooks/useTopRatedMovies";
+import { useMoviesPopular } from "@/hooks/usePopularMovies";
 
 export default function HomePage() {
   const [category, setCategory] = useState<string>("Inicio");
   const [search, setSearch] = useState("");
+  const { movies: moviesTopRated, isLoading } = useMoviesTopRated();
+  const { movies: moviesPopular, isLoadingPopular } = useMoviesPopular();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -110,6 +114,28 @@ export default function HomePage() {
         </div>
         <div className="homePage-movieList-card">
           <AuxiliarScrollMovie movies={actionMovies} />
+        </div>
+      </section>
+      <section className="homePage-movieList">
+        <div className="homePage-title-container">
+          <div className="homePage-movieList-title">
+            <h1>Melhores Avaliados</h1>
+            <IoIosArrowForward className="homePage-iconArrow" />
+          </div>
+        </div>
+        <div className="homePage-movieList-card">
+          <AuxiliarScrollMovie movies={moviesTopRated} />
+        </div>
+      </section>
+      <section className="homePage-movieList">
+        <div className="homePage-title-container">
+          <div className="homePage-movieList-title">
+            <h1>Filmes Populares</h1>
+            <IoIosArrowForward className="homePage-iconArrow" />
+          </div>
+        </div>
+        <div className="homePage-movieList-card">
+          <AuxiliarScrollMovie movies={moviesPopular} />
         </div>
       </section>
     </>
