@@ -15,8 +15,9 @@ type Category = string;
 export default function SeriesList() {
   const [series, setSeries] = useState<Series[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [category, setCategory] = useState<Category>("Filmes");
+  const [category, setCategory] = useState<Category>("Series");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
   const [filters, setFilters] = useState<{
     genre: any;
     order: any;
@@ -53,6 +54,8 @@ export default function SeriesList() {
           },
         }
       );
+      const fetchedTotalPages = response.data.total_pages;
+      setTotalPages(fetchedTotalPages > 500 ? 500 : fetchedTotalPages);
       setSeries(response.data.results);
     } catch (error) {
       console.error("Error fetching series:", error);
@@ -75,6 +78,8 @@ export default function SeriesList() {
           },
         }
       );
+      const fetchedTotalPages = response.data.total_pages;
+      setTotalPages(fetchedTotalPages > 500 ? 500 : fetchedTotalPages);
       setSeries(response.data.results);
     } catch (error) {
       console.error("Error fetching series:", error);
@@ -94,7 +99,7 @@ export default function SeriesList() {
   };
 
   const handleLastPage = () => {
-    setCurrentPage(500);
+    setCurrentPage(totalPages);
   };
 
   const handleFirstPage = () => {
@@ -140,7 +145,7 @@ export default function SeriesList() {
               onNextPage={handleNextPage}
               onPreviousPage={handlePreviousPage}
               lastPage={handleLastPage}
-              lastPageNumber={499}
+              lastPageNumber={totalPages}
             />
           </div>
         </div>
