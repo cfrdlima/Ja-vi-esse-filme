@@ -8,6 +8,14 @@ export interface Props {
 
 export default function MovieCard(props: Props) {
   const movie = props.movie;
+
+  const handleSeeMore = () => {
+    const searchQuery = new URLSearchParams({
+      q: movie.id.toString(),
+    }).toString();
+    window.location.href = `/Pages/movieDetail?${searchQuery}`;
+  };
+
   return (
     <li className="movie-card">
       <div className="movie-poster">
@@ -27,7 +35,9 @@ export default function MovieCard(props: Props) {
                 : movie.overview}
             </p>
           )}
-          <button className="btn-default">Ver mais</button>
+          <button className="btn-default" onClick={handleSeeMore}>
+            Ver mais
+          </button>
         </div>
       </div>
     </li>
