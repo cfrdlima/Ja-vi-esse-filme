@@ -31,11 +31,22 @@ export default function AuxiliarScrollMovie({ movies }: Props) {
     }
   };
 
+  const handleSeeMore = (movie: Movie) => {
+    const searchQuery = new URLSearchParams({
+      q: movie.id.toString(),
+    }).toString();
+    window.location.href = `/Pages/movieDetail?${searchQuery}`;
+  };
+
   return (
     <div className="movie-list-container">
       <ul className="movie-list" ref={movieListRef}>
         {movies.map((movie) => (
-          <li className="movie-card" key={movie.id}>
+          <li
+            className="movie-card"
+            key={movie.id}
+            onClick={() => handleSeeMore(movie)}
+          >
             <div className="movie-poster">
               <img
                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
