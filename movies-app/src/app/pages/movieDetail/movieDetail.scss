@@ -22,6 +22,10 @@ body {
     padding: 15px 0 15px;
   }
 
+  .movie-detail-providers {
+    display: flex;
+    gap: 15px;
+  }
   .movie-detail-providers img {
     width: 40px;
     height: 40px;
@@ -35,7 +39,7 @@ body {
       opacity: 12%;
       object-fit: cover;
       width: 100%;
-      height: 80%;
+      height: 85%;
     }
   }
 
@@ -109,7 +113,7 @@ body {
 .movie-detail-similar-container-section {
   display: flex;
   flex-direction: column;
-  padding: 1%;
+  padding: 30px 55px 0px;
   color: aliceblue;
   overflow-y: hidden;
   max-height: 850px;
@@ -208,6 +212,10 @@ body {
 
   .movie-detail-similar-title-container {
     margin-top: 2rem;
+  }
+
+  .movie-detail-similar-container-section {
+    padding: 10px 15px 0;
   }
 }
 
