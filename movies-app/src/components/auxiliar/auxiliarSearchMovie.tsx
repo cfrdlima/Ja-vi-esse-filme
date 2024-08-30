@@ -7,6 +7,13 @@ export interface Props {
 }
 
 export default function AuxiliarSearchMovie({ multi }: Props) {
+  const handleSeeMore = (multi: Multi) => {
+    const searchQuery = new URLSearchParams({
+      q: multi.id.toString(),
+    }).toString();
+    window.location.href = `/Pages/movieDetail?${searchQuery}`;
+  };
+
   return (
     <li className="movie-card">
       <div className="movie-poster">
@@ -26,7 +33,9 @@ export default function AuxiliarSearchMovie({ multi }: Props) {
                 : multi.overview}
             </p>
           )}
-          <button className="btn-default">Ver mais</button>
+          <button className="btn-default" onClick={() => handleSeeMore(multi)}>
+            Ver mais
+          </button>
         </div>
       </div>
     </li>
