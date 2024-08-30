@@ -3,7 +3,7 @@ import { getMoviesDetails } from '@/services/movieDetailsService';
 import { MovieDetails } from '@/types/movieDetails';
 
 export const useMoviesDetails = (params: number) => {
-  const [movie, setMovie] = useState<MovieDetails | null>(null); // Ajuste para um único objeto ou null
+  const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {

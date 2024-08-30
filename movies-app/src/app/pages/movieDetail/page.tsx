@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar/page";
 import "./movieDetail.scss";
 import StarRating from "@/components/StarRating/indext";
 import ReactLoading from "react-loading";
+import { useWatchProviders } from "@/hooks/useWatchProviders";
 
 type Category = string;
 
@@ -14,6 +15,8 @@ export default function MovieDetail() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const movieId = query ? Number(query) : 0;
+  const { movie: watchProviders, isLoading: watchProvidersLoading } =
+    useWatchProviders(movieId);
   const { movie, isLoading } = useMoviesDetails(movieId);
   const [category, setCategory] = useState<Category>(
     `Filme: Título não disponível`
@@ -22,6 +25,7 @@ export default function MovieDetail() {
   useEffect(() => {
     if (movie) {
       setCategory(`Filme:  ${movie.title}`);
+      console.log(watchProviders);
     }
   }, [movie]);
 
@@ -65,18 +69,40 @@ export default function MovieDetail() {
           </div>
         ) : movie ? (
           <>
-            <section className="movie-detail-container">
+            <section className="movie-detail-container-section">
               <div className="movie-detail-poster-background">
                 <img
                   src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                   alt={movie.title}
                 />
               </div>
-              <div className="movie-detail-poster">
-                <img
-                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                  alt={movie.title}
-                />
+              <div className="movie-detail-poster-container">
+                <div className="movie-detail-poster">
+                  <img
+                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                </div>
+                <div className="movie-detail-providers">
+                  {watchProvidersLoading ? (
+                    <ReactLoading
+                      type="spin"
+                      color="#6046ff"
+                      height={"5%"}
+                      width={"5%"}
+                    />
+                  ) : (
+                    watchProviders
+                      .flat()
+                      .map((provider) => (
+                        <img
+                          key={provider.provider_id}
+                          src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
+                          alt={provider.provider_name}
+                        />
+                      ))
+                  )}
+                </div>
               </div>
               <div className="movie-detail-container">
                 <div className="movie-detail-titulo-aux-1">
