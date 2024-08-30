@@ -13,13 +13,13 @@ body {
 
 .movie-detail-container {
   display: flex;
-  padding: 15px 10px 5px;
   gap: 55px;
 
   .movie-detail-poster img {
     width: 500px;
     height: 750px;
     border-radius: 50px;
+    padding: 15px 0 0;
   }
 
   .movie-detail-poster-background {
@@ -28,7 +28,7 @@ body {
       z-index: -1;
       opacity: 15%;
       object-fit: cover;
-      width: 99%;
+      width: 100%;
       height: 85%;
     }
   }
@@ -38,7 +38,8 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     font-size: 1.25rem; /* Ajustado para ser responsivo */
-    padding: 10px;
+    padding: 0 20px 0;
+    align-items: center;
 
     p {
       font-size: 2rem; /* Ajustado para ser responsivo */
@@ -107,29 +108,58 @@ body {
   .movie-detail-container {
     gap: 30px;
     flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
 
-    .movie-detail-poster img {
-      width: 100%;
-      height: auto;
-      border-radius: 50px;
-      padding: 2%;
-    }
+  .movie-detail-poster-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 
-    .movie-detail-container {
-      font-size: 1.125rem;
-      padding: 8px;
+  .movie-detail-poster-background img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 12%;
+    z-index: -1;
+  }
 
-      p {
-        font-size: 1.75rem;
-      }
+  .movie-detail-poster {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+  }
 
-      .movie-detail-titulo-aux-1 {
-        font-size: 1rem;
+  .movie-detail-poster img {
+    width: 500px;
+    height: 700px;
+    border-radius: 50px;
+    padding: 2%;
+  }
 
-        h2 {
-          font-size: 0.875rem;
-        }
-      }
+  .movie-detail-container {
+    font-size: 1.125rem; /* Ajusta o tamanho da fonte */
+    padding: 8px;
+  }
+
+  p {
+    font-size: 1.75rem; /* Ajusta o tamanho da fonte dos parágrafos */
+  }
+
+  .movie-detail-titulo-aux-1 {
+    font-size: 1rem;
+
+    h2 {
+      font-size: 0.875rem;
     }
   }
 }
@@ -137,7 +167,7 @@ body {
 /* Responsivo para dispositivos móveis */
 @media (max-width: 600px) {
   .movie-detail-container {
-    flex-direction: column; /* Layout em coluna para mobile */
+    flex-direction: column;
     gap: 20px;
 
     .movie-detail-poster img {
@@ -152,7 +182,7 @@ body {
         z-index: -1;
         opacity: 15%;
         object-fit: cover;
-        width: 95%;
+        width: 100%;
         height: 100%;
         border-radius: 10px;
       }
@@ -160,8 +190,9 @@ body {
 
     .movie-detail-container {
       display: flex;
-      flex-direction: column; /* Organiza os elementos em uma coluna */
-      font-size: 1rem; /* Ajusta para tamanho adequado */
+      flex-direction: column;
+      align-items: start;
+      font-size: 1rem;
       padding: 5px;
 
       p {
@@ -184,8 +215,8 @@ body {
       .movie-detail-duracao-aux-7,
       .movie-detail-situacao-aux-8,
       .movie-detail-pais-aux-9 {
-        grid-column: 1 / span 3; /* Faz com que cada elemento ocupe toda a largura */
-        gap: 0.5rem; /* Reduz o espaço entre elementos */
+        grid-column: 1 / span 3;
+        gap: 0.5rem;
       }
     }
   }
