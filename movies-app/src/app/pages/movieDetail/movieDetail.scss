@@ -1,5 +1,7 @@
 body {
   color: aliceblue;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .loading-container {
@@ -18,6 +20,17 @@ body {
     width: 500px;
     height: 750px;
     border-radius: 50px;
+  }
+
+  .movie-detail-poster-background {
+    img {
+      position: absolute;
+      z-index: -1;
+      opacity: 15%;
+      object-fit: cover;
+      width: 99%;
+      height: 85%;
+    }
   }
 
   .movie-detail-container {
@@ -131,6 +144,18 @@ body {
       width: 100%;
       height: auto;
       border-radius: 20px;
+    }
+
+    .movie-detail-poster-background {
+      img {
+        position: absolute;
+        z-index: -1;
+        opacity: 15%;
+        object-fit: cover;
+        width: 95%;
+        height: 100%;
+        border-radius: 10px;
+      }
     }
 
     .movie-detail-container {

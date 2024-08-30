@@ -11,6 +11,7 @@ export interface MovieDetails {
   revenue: number;
   runtime: number;
   status: string;
+  backdrop_path: string;
 }
 
 export interface Genre {

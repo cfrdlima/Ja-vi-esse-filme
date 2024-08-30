@@ -65,7 +65,13 @@ export default function MovieDetail() {
           </div>
         ) : movie ? (
           <>
-            <div className="movie-detail-container">
+            <section className="movie-detail-container">
+              <div className="movie-detail-poster-background">
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  alt={movie.title}
+                />
+              </div>
               <div className="movie-detail-poster">
                 <img
                   src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
@@ -118,7 +124,7 @@ export default function MovieDetail() {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
           </>
         ) : (
           <p>Detalhes do filme não disponíveis.</p>
