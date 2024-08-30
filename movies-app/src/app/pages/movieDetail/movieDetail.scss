@@ -1,3 +1,167 @@
 body {
   color: aliceblue;
 }
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 72px);
+}
+
+.movie-detail-container {
+  display: flex;
+  padding: 15px 10px 5px;
+  gap: 55px;
+
+  .movie-detail-poster img {
+    width: 500px;
+    height: 750px;
+    border-radius: 50px;
+  }
+
+  .movie-detail-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    font-size: 1.25rem; /* Ajustado para ser responsivo */
+    padding: 10px;
+
+    p {
+      font-size: 2rem; /* Ajustado para ser responsivo */
+      font-weight: bold;
+      padding-bottom: 5px;
+    }
+
+    .movie-detail-titulo-aux-1 {
+      grid-column: 1 / span 3;
+      grid-row: 1;
+      font-size: 0.75rem;
+
+      h2 {
+        font-size: 1rem;
+        font-weight: normal;
+      }
+    }
+
+    .movie-detail-avaliacao-aux-2 {
+      display: flex;
+      gap: 2rem;
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+    }
+
+    .movie-detail-data-aux-3 {
+      grid-column: 2 / span 2;
+      grid-row: 2;
+    }
+
+    .movie-detail-sinopse-aux-4 {
+      grid-column: 1 / span 3;
+      grid-row: 3;
+      text-align: justify;
+    }
+
+    .movie-detail-orcamento-aux-5 {
+      grid-column: 1 / span 1;
+      grid-row: 4 / span 1;
+    }
+
+    .movie-detail-bilheteria-aux-6 {
+      grid-column: 2 / span 1;
+      grid-row: 4 / span 1;
+    }
+
+    .movie-detail-duracao-aux-7 {
+      grid-column: 3 / span 1;
+      grid-row: 4 / span 1;
+    }
+
+    .movie-detail-situacao-aux-8 {
+      grid-column: 1 / span 1;
+      grid-row: 5;
+    }
+
+    .movie-detail-pais-aux-9 {
+      grid-column: 2 / span 1;
+      grid-row: 5;
+    }
+  }
+}
+
+/* Responsivo para telas menores */
+@media (max-width: 1024px) {
+  .movie-detail-container {
+    gap: 30px;
+    flex-direction: column;
+
+    .movie-detail-poster img {
+      width: 100%;
+      height: auto;
+      border-radius: 50px;
+      padding: 2%;
+    }
+
+    .movie-detail-container {
+      font-size: 1.125rem;
+      padding: 8px;
+
+      p {
+        font-size: 1.75rem;
+      }
+
+      .movie-detail-titulo-aux-1 {
+        font-size: 1rem;
+
+        h2 {
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+}
+
+/* Responsivo para dispositivos móveis */
+@media (max-width: 600px) {
+  .movie-detail-container {
+    flex-direction: column; /* Layout em coluna para mobile */
+    gap: 20px;
+
+    .movie-detail-poster img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+
+    .movie-detail-container {
+      display: flex;
+      flex-direction: column; /* Organiza os elementos em uma coluna */
+      font-size: 1rem; /* Ajusta para tamanho adequado */
+      padding: 5px;
+
+      p {
+        font-size: 1.5rem; /* Ajuste o tamanho da fonte */
+      }
+
+      .movie-detail-titulo-aux-1 {
+        font-size: 0.875rem;
+
+        h2 {
+          font-size: 0.75rem;
+        }
+      }
+
+      .movie-detail-avaliacao-aux-2,
+      .movie-detail-data-aux-3,
+      .movie-detail-sinopse-aux-4,
+      .movie-detail-orcamento-aux-5,
+      .movie-detail-bilheteria-aux-6,
+      .movie-detail-duracao-aux-7,
+      .movie-detail-situacao-aux-8,
+      .movie-detail-pais-aux-9 {
+        grid-column: 1 / span 3; /* Faz com que cada elemento ocupe toda a largura */
+        gap: 0.5rem; /* Reduz o espaço entre elementos */
+      }
+    }
+  }
+}

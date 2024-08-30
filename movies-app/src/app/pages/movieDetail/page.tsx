@@ -21,11 +21,10 @@ export default function MovieDetail() {
 
   useEffect(() => {
     if (movie) {
-      setCategory(`Filme: ${movie.title}`);
+      setCategory(`Filme:  ${movie.title}`);
     }
   }, [movie]);
 
-  // Função para formatar a data
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       day: "2-digit",
@@ -48,7 +47,7 @@ export default function MovieDetail() {
   };
 
   const getTranslatedStatus = (status: string) => {
-    return statusTranslations[status] || status; // Retorna o status traduzido ou o status original se não estiver no mapeamento
+    return statusTranslations[status] || status;
   };
 
   return (
@@ -66,46 +65,60 @@ export default function MovieDetail() {
           </div>
         ) : movie ? (
           <>
-            <li>
-              <img
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt={movie.title}
-              />
-            </li>
-            <li>
-              <strong>Título:</strong> {movie.title}
-            </li>
-            <li>
-              <strong>Sinopse:</strong> {movie.overview}
-            </li>
-            <li>
-              <strong>Avaliação: </strong>
-              <StarRating rating={movie.vote_average} />
-            </li>
-            <li>
-              <strong>Orçamento:</strong> ${movie.budget.toLocaleString()}
-            </li>
-            <li>
-              <strong>Bilheteria:</strong> ${movie.revenue.toLocaleString()}
-            </li>
-            <li>
-              <strong>Duração:</strong> {movie.runtime} min
-            </li>
-            <li>
-              <strong>Situação:</strong> {getTranslatedStatus(movie.status)}
-            </li>
-            <li>
-              <strong>Genres: </strong>
-              {movie.genres.map((genre) => genre.name).join(", ")}
-            </li>
-            <li>
-              <strong>País: </strong>
-              {movie.origin_country}
-            </li>
-            <li>
-              <strong>Data de Lançamento:</strong>{" "}
-              {formatDate(movie.release_date)}
-            </li>
+            <div className="movie-detail-container">
+              <div className="movie-detail-poster">
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                  alt={movie.title}
+                />
+              </div>
+              <div className="movie-detail-container">
+                <div className="movie-detail-titulo-aux-1">
+                  <p>{movie.title}</p>
+                  <h2>{movie.genres.map((genre) => genre.name).join(", ")}</h2>
+                </div>
+                <div className="movie-detail-avaliacao-aux-2">
+                  <div className="movie-detail-vote">
+                    <p>Avaliação: </p>
+                    <StarRating rating={movie.vote_average} />
+                  </div>
+                </div>
+                <div className="movie-detail-data-aux-3">
+                  <div className="movie-detail-data">
+                    <p>Data de Lançamento:</p> {formatDate(movie.release_date)}
+                  </div>
+                </div>
+                <div className="movie-detail-sinopse-aux-4">
+                  <p>Sinopse:</p> {movie.overview}
+                </div>
+                <div className="movie-detail-orcamento-aux-5">
+                  <div className="movie-detail-orcamento">
+                    <p>Orçamento:</p> ${movie.budget.toLocaleString()}
+                  </div>
+                </div>
+                <div className="movie-detail-bilheteria-aux-6">
+                  <div className="movie-detail-bilheteria">
+                    <p>Bilheteria:</p> ${movie.revenue.toLocaleString()}
+                  </div>
+                </div>
+                <div className="movie-detail-duracao-aux-7">
+                  <div className="movie-detail-duracao">
+                    <p>Duração:</p> {movie.runtime} min
+                  </div>
+                </div>
+                <div className="movie-detail-situacao-aux-8">
+                  <div className="movie-detail-situacao">
+                    <p>Situação:</p> {getTranslatedStatus(movie.status)}
+                  </div>
+                </div>
+                <div className="movie-detail-pais-aux-9">
+                  <div className="movie-detail-pais">
+                    <p>País: </p>
+                    {movie.origin_country}
+                  </div>
+                </div>
+              </div>
+            </div>
           </>
         ) : (
           <p>Detalhes do filme não disponíveis.</p>
