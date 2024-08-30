@@ -11,6 +11,7 @@ import { useWatchProviders } from "@/hooks/useWatchProviders";
 import { useSimilarMovies } from "@/hooks/useSimilarMovies";
 import AuxiliarScrollMovie from "@/components/auxiliar/auxiliarScrollMovie";
 import { IoIosArrowForward } from "react-icons/io";
+import { useRecommendationsMovies } from "@/hooks/useRecommendationsMovies";
 
 type Category = string;
 
@@ -22,6 +23,10 @@ export default function MovieDetail() {
     useWatchProviders(movieId);
   const { movies: similarMovies, isLoading: similarMoviesLoading } =
     useSimilarMovies(movieId);
+  const {
+    movies: recommendationsMovies,
+    isLoading: recommendationsMoviesLoading,
+  } = useRecommendationsMovies(movieId);
   const { movie, isLoading } = useMoviesDetails(movieId);
   const [category, setCategory] = useState<Category>(
     `Filme: Título não disponível`
@@ -170,6 +175,15 @@ export default function MovieDetail() {
         </div>
         <div className="movie-detail-similar-card">
           <AuxiliarScrollMovie movies={similarMovies} />
+        </div>
+      </section>
+      <section className="movie-detail-similar-container-section">
+        <div className="movie-detail-similar-title-container">
+          <h1>Filmes recomendados</h1>
+          <IoIosArrowForward className="homePage-iconArrow" />
+        </div>
+        <div className="movie-detail-similar-card">
+          <AuxiliarScrollMovie movies={recommendationsMovies} />
         </div>
       </section>
     </>
