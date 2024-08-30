@@ -8,6 +8,9 @@ import "./movieDetail.scss";
 import StarRating from "@/components/StarRating/indext";
 import ReactLoading from "react-loading";
 import { useWatchProviders } from "@/hooks/useWatchProviders";
+import { useSimilarMovies } from "@/hooks/useSimilarMovies";
+import AuxiliarScrollMovie from "@/components/auxiliar/auxiliarScrollMovie";
+import { IoIosArrowForward } from "react-icons/io";
 
 type Category = string;
 
@@ -17,6 +20,8 @@ export default function MovieDetail() {
   const movieId = query ? Number(query) : 0;
   const { movie: watchProviders, isLoading: watchProvidersLoading } =
     useWatchProviders(movieId);
+  const { movies: similarMovies, isLoading: similarMoviesLoading } =
+    useSimilarMovies(movieId);
   const { movie, isLoading } = useMoviesDetails(movieId);
   const [category, setCategory] = useState<Category>(
     `Filme: Título não disponível`
@@ -27,6 +32,8 @@ export default function MovieDetail() {
       setCategory(`Filme:  ${movie.title}`);
       console.log(watchProviders);
     }
+    watchProviders;
+    similarMovies;
   }, [movie]);
 
   const formatDate = (dateString: string) => {
@@ -156,6 +163,15 @@ export default function MovieDetail() {
           <p>Detalhes do filme não disponíveis.</p>
         )}
       </ul>
+      <section className="movie-detail-similar-container-section">
+        <div className="movie-detail-similar-title-container">
+          <h1>Filmes similares</h1>
+          <IoIosArrowForward className="homePage-iconArrow" />
+        </div>
+        <div className="movie-detail-similar-card">
+          <AuxiliarScrollMovie movies={similarMovies} />
+        </div>
+      </section>
     </>
   );
 }
