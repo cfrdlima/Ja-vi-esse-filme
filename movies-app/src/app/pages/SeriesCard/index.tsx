@@ -8,6 +8,14 @@ export interface Props {
 
 export default function SeriesCard(props: Props) {
   const serie = props.series;
+
+  const handleSeeMore = () => {
+    const searchQuery = new URLSearchParams({
+      q: serie.id.toString(),
+    }).toString();
+    window.location.href = `/Pages/serieDetail?${searchQuery}`;
+  };
+
   return (
     <li className="serie-card">
       <div className="serie-poster">
@@ -27,7 +35,9 @@ export default function SeriesCard(props: Props) {
                 : serie.overview}
             </p>
           )}
-          <button className="btn-default">Ver mais</button>
+          <button className="btn-default" onClick={handleSeeMore}>
+            Ver mais
+          </button>
         </div>
       </div>
     </li>
