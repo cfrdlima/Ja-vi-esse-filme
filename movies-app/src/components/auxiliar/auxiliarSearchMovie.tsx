@@ -11,7 +11,11 @@ export default function AuxiliarSearchMovie({ multi }: Props) {
     const searchQuery = new URLSearchParams({
       q: multi.id.toString(),
     }).toString();
-    window.location.href = `/Pages/movieDetail?${searchQuery}`;
+    if (multi.title) {
+      window.location.href = `/Pages/movieDetail?${searchQuery}`;
+    } else {
+      window.location.href = `/Pages/serieDetail?${searchQuery}`;
+    }
   };
 
   return (

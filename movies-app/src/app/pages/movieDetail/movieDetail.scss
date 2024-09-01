@@ -32,6 +32,10 @@ body {
     border-radius: 50%;
   }
 
+  .movie-detail-providers-null {
+    font-size: 1.5rem;
+  }
+
   .movie-detail-poster-background {
     img {
       position: absolute;
@@ -224,12 +228,19 @@ body {
   .movie-detail-container-section {
     flex-direction: column;
     gap: 20px;
+    padding: 1%;
 
     .movie-detail-poster img {
       width: 100%;
       height: auto;
       border-radius: 50px;
       padding: 15px 10px 0;
+    }
+
+    .movie-detail-providers-null {
+      font-size: 1rem;
+      padding: 2%;
+      text-align: center;
     }
 
     .movie-detail-poster-background {
@@ -268,5 +279,9 @@ body {
 
   .movie-detail-similar-title-container {
     margin-top: 2rem;
+  }
+
+  .movie-detail-providers {
+    padding: 4%;
   }
 }

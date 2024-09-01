@@ -103,16 +103,30 @@ export default function MovieDetail() {
                       height={"5%"}
                       width={"5%"}
                     />
-                  ) : (
+                  ) : watchProviders && watchProviders.length > 0 ? (
                     watchProviders
                       .flat()
-                      .map((provider) => (
-                        <img
-                          key={provider.provider_id}
-                          src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
-                          alt={provider.provider_name}
-                        />
-                      ))
+                      .map((provider) =>
+                        provider ? (
+                          <img
+                            key={provider.provider_id}
+                            src={
+                              provider.logo_path
+                                ? `https://image.tmdb.org/t/p/original${provider.logo_path}`
+                                : ""
+                            }
+                            alt={provider.provider_name || "Provider sem nome"}
+                          />
+                        ) : (
+                          <p key={`provider-${Math.random()}`}>
+                            Streamings não disponíveis no momento
+                          </p>
+                        )
+                      )
+                  ) : (
+                    <p className="movie-detail-providers-null">
+                      Streamings não disponíveis no momento
+                    </p>
                   )}
                 </div>
               </div>
