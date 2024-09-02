@@ -51,6 +51,7 @@ jobs:
             echo "Unable to determine package manager"
             exit 1
           fi
+        shell: /usr/bin/bash -e {0}
 
       - name: Setup Node
         uses: actions/setup-node@v4
