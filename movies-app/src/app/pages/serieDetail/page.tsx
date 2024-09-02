@@ -9,7 +9,9 @@ import StarRating from "@/components/StarRating/indext";
 import ReactLoading from "react-loading";
 import { IoIosArrowForward } from "react-icons/io";
 import { useSeriesWatchProviders } from "@/hooks/userSeriesWatchProviders";
-import AuxiliarScrollMovie from "@/components/auxiliar/auxiliarScrollMovie";
+import AuxiliarScrollSerie from "@/components/auxiliar/auxiliarScrollSerie";
+import { useSimilarSeries } from "@/hooks/useSimilarSeries";
+import { useRecommendationsMovies } from "@/hooks/useRecommendationsSeries";
 
 type Category = string;
 
@@ -23,6 +25,10 @@ export default function SerieDetail() {
   const [category, setCategory] = useState<Category>(
     `Série: Título não disponível`
   );
+  const { series: similarSeries, isLoading: similarSeriesLoading } =
+    useSimilarSeries(serieId);
+  const { series: recomendationSeries, isLoading: recomendationSeriesLoading } =
+    useRecommendationsMovies(serieId);
 
   useEffect(() => {
     if (serie) {
@@ -30,6 +36,7 @@ export default function SerieDetail() {
       console.log(serie);
     }
     watchProviders;
+    similarSeries;
   }, [serie]);
 
   const formatDate = (dateString: string) => {
@@ -165,13 +172,13 @@ export default function SerieDetail() {
           <p>Detalhes da serie não disponíveis.</p>
         )}
       </ul>
-      {/* <section className="movie-detail-similar-container-section">
+      <section className="movie-detail-similar-container-section">
         <div className="movie-detail-similar-title-container">
           <h1>Filmes similares</h1>
           <IoIosArrowForward className="homePage-iconArrow" />
         </div>
         <div className="movie-detail-similar-card">
-          <AuxiliarScrollMovie movies={similarMovies} />
+          <AuxiliarScrollSerie series={similarSeries} />
         </div>
       </section>
       <section className="movie-detail-similar-container-section">
@@ -180,9 +187,9 @@ export default function SerieDetail() {
           <IoIosArrowForward className="homePage-iconArrow" />
         </div>
         <div className="movie-detail-similar-card">
-          <AuxiliarScrollMovie movies={recommendationsMovies} />
+          <AuxiliarScrollSerie series={recomendationSeries} />
         </div>
-      </section> */}
+      </section>
     </>
   );
 }
