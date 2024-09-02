@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useSeriesDetails } from "@/hooks/useSerieDetails";
 import Navbar from "@/components/navbar/page";
@@ -64,132 +64,139 @@ export default function SerieDetail() {
 
   return (
     <>
-      <Navbar currentCategory={category} setCategory={setCategory} />
-      <ul className="movie-details">
-        {isLoading ? (
-          <div className="loading-container">
-            <ReactLoading
-              type="spin"
-              color="#6046ff"
-              height={"5%"}
-              width={"5%"}
-            />
-          </div>
-        ) : serie ? (
-          <>
-            <section className="movie-detail-container-section">
-              <div className="movie-detail-poster-background">
-                <img
-                  src={`https://image.tmdb.org/t/p/original${serie.backdrop_path}`}
-                  alt={serie.original_name}
-                />
-              </div>
-              <div className="movie-detail-poster-container">
-                <div className="movie-detail-poster">
+      <Suspense>
+        <Navbar currentCategory={category} setCategory={setCategory} />
+        <ul className="movie-details">
+          {isLoading ? (
+            <div className="loading-container">
+              <ReactLoading
+                type="spin"
+                color="#6046ff"
+                height={"5%"}
+                width={"5%"}
+              />
+            </div>
+          ) : serie ? (
+            <>
+              <section className="movie-detail-container-section">
+                <div className="movie-detail-poster-background">
                   <img
-                    src={`https://image.tmdb.org/t/p/original${serie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/original${serie.backdrop_path}`}
                     alt={serie.original_name}
                   />
                 </div>
-                <div className="movie-detail-providers">
-                  {watchProvidersLoading ? (
-                    <ReactLoading
-                      type="spin"
-                      color="#6046ff"
-                      height={"5%"}
-                      width={"5%"}
+                <div className="movie-detail-poster-container">
+                  <div className="movie-detail-poster">
+                    <img
+                      src={`https://image.tmdb.org/t/p/original${serie.poster_path}`}
+                      alt={serie.original_name}
                     />
-                  ) : watchProviders && watchProviders.length > 0 ? (
-                    watchProviders
-                      .flat()
-                      .map((provider) =>
-                        provider ? (
-                          <img
-                            key={provider.provider_id}
-                            src={
-                              provider.logo_path
-                                ? `https://image.tmdb.org/t/p/original${provider.logo_path}`
-                                : ""
-                            }
-                            alt={provider.provider_name || "Provider sem nome"}
-                          />
-                        ) : (
-                          <p key={`provider-${Math.random()}`}>
-                            Streamings não disponíveis no momento
-                          </p>
+                  </div>
+                  <div className="movie-detail-providers">
+                    {watchProvidersLoading ? (
+                      <ReactLoading
+                        type="spin"
+                        color="#6046ff"
+                        height={"5%"}
+                        width={"5%"}
+                      />
+                    ) : watchProviders && watchProviders.length > 0 ? (
+                      watchProviders
+                        .flat()
+                        .map((provider) =>
+                          provider ? (
+                            <img
+                              key={provider.provider_id}
+                              src={
+                                provider.logo_path
+                                  ? `https://image.tmdb.org/t/p/original${provider.logo_path}`
+                                  : ""
+                              }
+                              alt={
+                                provider.provider_name || "Provider sem nome"
+                              }
+                            />
+                          ) : (
+                            <p key={`provider-${Math.random()}`}>
+                              Streamings não disponíveis no momento
+                            </p>
+                          )
                         )
-                      )
-                  ) : (
-                    <p className="movie-detail-providers-null">
-                      Streamings não disponíveis no momento
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="movie-detail-container">
-                <div className="movie-detail-titulo-aux-1">
-                  <p>{serie.original_name}</p>
-                  <h2>{serie.genres.map((genre) => genre.name).join(", ")}</h2>
-                </div>
-                <div className="movie-detail-avaliacao-aux-2">
-                  <div className="movie-detail-vote">
-                    <p>Avaliação: </p>
-                    <StarRating rating={serie.vote_average} />
+                    ) : (
+                      <p className="movie-detail-providers-null">
+                        Streamings não disponíveis no momento
+                      </p>
+                    )}
                   </div>
                 </div>
-                <div className="movie-detail-data-aux-3">
-                  <div className="movie-detail-data">
-                    <p>Primeiro episódio:</p> {formatDate(serie.first_air_date)}
+                <div className="movie-detail-container">
+                  <div className="movie-detail-titulo-aux-1">
+                    <p>{serie.original_name}</p>
+                    <h2>
+                      {serie.genres.map((genre) => genre.name).join(", ")}
+                    </h2>
+                  </div>
+                  <div className="movie-detail-avaliacao-aux-2">
+                    <div className="movie-detail-vote">
+                      <p>Avaliação: </p>
+                      <StarRating rating={serie.vote_average} />
+                    </div>
+                  </div>
+                  <div className="movie-detail-data-aux-3">
+                    <div className="movie-detail-data">
+                      <p>Primeiro episódio:</p>{" "}
+                      {formatDate(serie.first_air_date)}
+                    </div>
+                  </div>
+                  <div className="movie-detail-situacao-aux-8">
+                    <div className="movie-detail-situacao">
+                      <p>Último episódio:</p> {formatDate(serie.last_air_date)}
+                    </div>
+                  </div>
+                  <div className="movie-detail-sinopse-aux-4">
+                    <p>Sinopse:</p> {serie.overview}
+                  </div>
+                  <div className="movie-detail-orcamento-aux-5">
+                    <div className="movie-detail-orcamento">
+                      <p>Número de temporadas:</p> {serie.number_of_seasons}
+                    </div>
+                  </div>
+                  <div className="movie-detail-bilheteria-aux-6">
+                    <div className="movie-detail-bilheteria">
+                      <p>Número de episódios:</p> {serie.number_of_episodes}
+                    </div>
+                  </div>
+                  <div className="movie-detail-pais-aux-9">
+                    <div className="movie-detail-situacao">
+                      <p>Situação:</p> {getTranslatedStatus(serie.status)}
+                    </div>
                   </div>
                 </div>
-                <div className="movie-detail-situacao-aux-8">
-                  <div className="movie-detail-situacao">
-                    <p>Último episódio:</p> {formatDate(serie.last_air_date)}
-                  </div>
-                </div>
-                <div className="movie-detail-sinopse-aux-4">
-                  <p>Sinopse:</p> {serie.overview}
-                </div>
-                <div className="movie-detail-orcamento-aux-5">
-                  <div className="movie-detail-orcamento">
-                    <p>Número de temporadas:</p> {serie.number_of_seasons}
-                  </div>
-                </div>
-                <div className="movie-detail-bilheteria-aux-6">
-                  <div className="movie-detail-bilheteria">
-                    <p>Número de episódios:</p> {serie.number_of_episodes}
-                  </div>
-                </div>
-                <div className="movie-detail-pais-aux-9">
-                  <div className="movie-detail-situacao">
-                    <p>Situação:</p> {getTranslatedStatus(serie.status)}
-                  </div>
-                </div>
-              </div>
-            </section>
-          </>
-        ) : (
-          <p>Detalhes da serie não disponíveis.</p>
-        )}
-      </ul>
-      <section className="movie-detail-similar-container-section">
-        <div className="movie-detail-similar-title-container">
-          <h1>Filmes similares</h1>
-          <IoIosArrowForward className="homePage-iconArrow" />
-        </div>
-        <div className="movie-detail-similar-card">
-          <AuxiliarScrollSerie series={similarSeries} />
-        </div>
-      </section>
-      <section className="movie-detail-similar-container-section">
-        <div className="movie-detail-similar-title-container">
-          <h1>Filmes recomendados</h1>
-          <IoIosArrowForward className="homePage-iconArrow" />
-        </div>
-        <div className="movie-detail-similar-card">
-          <AuxiliarScrollSerie series={recomendationSeries} />
-        </div>
-      </section>
+              </section>
+            </>
+          ) : (
+            <p>Detalhes da serie não disponíveis.</p>
+          )}
+        </ul>
+        <section className="movie-detail-similar-container-section">
+          <div className="movie-detail-similar-title-container">
+            <h1>Filmes similares</h1>
+            <IoIosArrowForward className="homePage-iconArrow" />
+          </div>
+          <div className="movie-detail-similar-card">
+            <AuxiliarScrollSerie series={similarSeries} />
+          </div>
+        </section>
+        <section className="movie-detail-similar-container-section">
+          <div className="movie-detail-similar-title-container">
+            <h1>Filmes recomendados</h1>
+            <IoIosArrowForward className="homePage-iconArrow" />
+          </div>
+          <div className="movie-detail-similar-card">
+            <AuxiliarScrollSerie series={recomendationSeries} />
+          </div>
+        </section>
+      </Suspense>
     </>
   );
 }

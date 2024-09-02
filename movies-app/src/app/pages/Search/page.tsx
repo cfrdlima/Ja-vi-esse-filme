@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useMoviesAndSeries } from "@/hooks/useSearchMovies";
 import "./page.scss";
@@ -31,12 +31,14 @@ export default function Search() {
 
   return (
     <>
-      <Navbar currentCategory={category} setCategory={setCategory} />
-      <ul className="movie-list">
-        {moviesSearch.map((multi: Multi) => (
-          <AuxiliarSearchMovie key={multi.id} multi={multi} />
-        ))}
-      </ul>
+      <Suspense>
+        <Navbar currentCategory={category} setCategory={setCategory} />
+        <ul className="movie-list">
+          {moviesSearch.map((multi: Multi) => (
+            <AuxiliarSearchMovie key={multi.id} multi={multi} />
+          ))}
+        </ul>
+      </Suspense>
     </>
   );
 }
