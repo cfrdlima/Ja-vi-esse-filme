@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import "./page.scss";
 import Image from "next/image";
 import Navbar from "@/components/navbar/page";
@@ -69,19 +69,21 @@ export default function HomePage() {
           quality={100}
         />
         <div className="homePage-title">Bem vindo ao Já vi esse filme?</div>
-        <div className="homePage-form">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Buscar por filmes ou series"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
-            <button type="submit">
-              <BiSearchAlt2 className="homePage-icon" />
-            </button>
-          </form>
-        </div>
+        <Suspense>
+          <div className="homePage-form">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Buscar por filmes ou series"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+              />
+              <button type="submit">
+                <BiSearchAlt2 className="homePage-icon" />
+              </button>
+            </form>
+          </div>
+        </Suspense>
       </section>
       <section className="homePage-movieList">
         <div className="homePage-title-container">
