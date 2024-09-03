@@ -15,28 +15,25 @@ import { useRecommendationsMovies } from "@/hooks/useRecommendationsSeries";
 
 type Category = string;
 
-export default function SerieDetail() {
+// Componente separado que usa `useSearchParams`
+function SerieDetailContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const serieId = query ? Number(query) : 0;
+
   const { serie: watchProviders, isLoading: watchProvidersLoading } =
     useSeriesWatchProviders(serieId);
   const { serie, isLoading } = useSeriesDetails(serieId);
   const [category, setCategory] = useState<Category>(
     `Série: Título não disponível`
   );
-  const { series: similarSeries, isLoading: similarSeriesLoading } =
-    useSimilarSeries(serieId);
-  const { series: recomendationSeries, isLoading: recomendationSeriesLoading } =
-    useRecommendationsMovies(serieId);
+  const { series: similarSeries } = useSimilarSeries(serieId);
+  const { series: recomendationSeries } = useRecommendationsMovies(serieId);
 
   useEffect(() => {
     if (serie) {
-      setCategory(`Série:  ${serie.original_name}`);
-      console.log(serie);
+      setCategory(`Série: ${serie.original_name}`);
     }
-    watchProviders;
-    similarSeries;
   }, [serie]);
 
   const formatDate = (dateString: string) => {
@@ -64,9 +61,7 @@ export default function SerieDetail() {
 
   return (
     <>
-      <Suspense>
-        <Navbar currentCategory={category} setCategory={setCategory} />
-      </Suspense>
+      <Navbar currentCategory={category} setCategory={setCategory} />
       <ul className="movie-details">
         {isLoading ? (
           <div className="loading-container">
@@ -219,5 +214,24 @@ export default function SerieDetail() {
         </Suspense>
       </section>
     </>
+  );
+}
+
+export default function SerieDetail() {
+  return (
+    <Suspense
+      fallback={
+        <div className="loading-container">
+          <ReactLoading
+            type="spin"
+            color="#6046ff"
+            height={"5%"}
+            width={"5%"}
+          />
+        </div>
+      }
+    >
+      <SerieDetailContent />
+    </Suspense>
   );
 }
