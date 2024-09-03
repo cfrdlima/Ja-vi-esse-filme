@@ -11,6 +11,16 @@ import { Multi } from "@/types/multi";
 type Category = string;
 
 export default function Search() {
+  // Envolver o uso do useSearchParams dentro de um limite de Suspense
+  return (
+    <Suspense fallback={<div>Carregando parâmetros de busca...</div>}>
+      <SearchContent />
+    </Suspense>
+  );
+}
+
+// Extrair a lógica para um componente separado para manter o código mais claro
+function SearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const stringSearch = `Busca relacionada a ${query}`;
@@ -31,14 +41,12 @@ export default function Search() {
 
   return (
     <>
-      <Suspense>
-        <Navbar currentCategory={category} setCategory={setCategory} />
-        <ul className="movie-list">
-          {moviesSearch.map((multi: Multi) => (
-            <AuxiliarSearchMovie key={multi.id} multi={multi} />
-          ))}
-        </ul>
-      </Suspense>
+      <Navbar currentCategory={category} setCategory={setCategory} />
+      <ul className="movie-list">
+        {moviesSearch.map((multi: Multi) => (
+          <AuxiliarSearchMovie key={multi.id} multi={multi} />
+        ))}
+      </ul>
     </>
   );
 }
