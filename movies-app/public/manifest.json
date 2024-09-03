@@ -1,0 +1,27 @@
+{
+  "background_color": "#003369",
+  "description": "Gerencie seus filmes e series",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Já vi este filme ?",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Já vi este filme ?",
+  "start_url": "/",
+  "theme_color": "#0080f9",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon"
+    }
+  ],
+  "lang": "pt",
+  "categories": [
+    "entertainment"
+  ]
+}
