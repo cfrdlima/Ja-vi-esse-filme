@@ -16,7 +16,7 @@ export default function Home() {
           <input type="password" placeholder="Senha" />
           <button
             type="button"
-            onClick={() => (window.location.href = "/Pages/Inicio")}
+            onClick={() => (window.location.href = "/pages/Inicio")}
           >
             Entrar
           </button>
