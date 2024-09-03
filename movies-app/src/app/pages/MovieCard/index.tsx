@@ -14,7 +14,7 @@ export default function MovieCard(props: Props) {
     const searchQuery = new URLSearchParams({
       q: movie.id.toString(),
     }).toString();
-    window.location.href = `/Pages/movieDetail?${searchQuery}`;
+    window.location.href = `/pages/movieDetail?${searchQuery}`;
   };
 
   return (

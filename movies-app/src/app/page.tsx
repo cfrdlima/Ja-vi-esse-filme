@@ -12,8 +12,8 @@ export default function Home() {
         <Image className="logo" src={sofaImage} alt="sofa" />
         <h2>Bem Vindo ao Já vi esse filme?</h2>
         <form className="form">
-          <input type="email" placeholder="Usuário" />
-          <input type="password" placeholder="Senha" />
+          {/* <input type="email" placeholder="Usuário" /> */}
+          {/* <input type="password" placeholder="Senha" /> */}
           <button
             type="button"
             onClick={() => (window.location.href = "/pages/Inicio")}
@@ -21,10 +21,10 @@ export default function Home() {
             Entrar
           </button>
         </form>
-        <footer>
+        {/* <footer>
           Precisa de uma conta?
           <a href="https://www.themoviedb.org/?language=pt-BR"> Crie já!</a>
-        </footer>
+        </footer> */}
       </div>
     </div>
   );

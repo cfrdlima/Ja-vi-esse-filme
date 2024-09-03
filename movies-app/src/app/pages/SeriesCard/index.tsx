@@ -14,7 +14,7 @@ export default function SeriesCard(props: Props) {
     const searchQuery = new URLSearchParams({
       q: serie.id.toString(),
     }).toString();
-    window.location.href = `/Pages/serieDetail?${searchQuery}`;
+    window.location.href = `/pages/serieDetail?${searchQuery}`;
   };
 
   return (

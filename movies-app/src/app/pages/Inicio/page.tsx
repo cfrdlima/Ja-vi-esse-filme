@@ -25,7 +25,7 @@ export default function HomePage() {
       return;
     } else {
       const searchQuery = new URLSearchParams({ q: search }).toString();
-      window.location.href = `/Pages/Search?${searchQuery}`;
+      window.location.href = `/pages/Search?${searchQuery}`;
       setSearch("");
     }
   };
