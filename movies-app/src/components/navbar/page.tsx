@@ -36,7 +36,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 className={currentCategory === "Inicio" ? "active" : ""}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = "/Pages/Inicio";
+                  window.location.href = "/pages/Inicio";
                   setCategory("Inicio");
                 }}
               >
