@@ -1,0 +1,279 @@
+body {
+  color: aliceblue;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 72px);
+}
+
+.movie-detail-container-section {
+  display: flex;
+  gap: 55px;
+
+  .movie-detail-poster img {
+    width: 500px;
+    height: 750px;
+    border-radius: 50px;
+    padding: 15px 0 15px;
+  }
+
+  .movie-detail-providers {
+    display: flex;
+    gap: 15px;
+  }
+  .movie-detail-providers img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .movie-detail-providers-null {
+    font-size: 1.5rem;
+  }
+
+  .movie-detail-poster-background {
+    img {
+      position: absolute;
+      z-index: -1;
+      opacity: 12%;
+      object-fit: cover;
+      width: 100%;
+      height: 85%;
+    }
+  }
+
+  .movie-detail-container {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    font-size: 1.25rem;
+    padding: 20px 20px 0;
+    gap: 0px 5px;
+
+    p {
+      font-size: 2rem;
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+
+    .movie-detail-titulo-aux-1 {
+      grid-column: 1 / span 3;
+      grid-row: 1;
+      font-size: 0.75rem;
+
+      h2 {
+        font-size: 1rem;
+        font-weight: normal;
+      }
+    }
+
+    .movie-detail-avaliacao-aux-2 {
+      grid-column: 1 / span 1;
+      grid-row: 2 / span 1;
+    }
+
+    .movie-detail-data-aux-3 {
+      grid-column: 2 / span 1;
+      grid-row: 2 / span 1;
+    }
+
+    .movie-detail-sinopse-aux-4 {
+      grid-column: 1 / span 3;
+      grid-row: 3;
+      text-align: justify;
+    }
+
+    .movie-detail-orcamento-aux-5 {
+      grid-column: 1 / span 1;
+      grid-row: 4 / span 1;
+    }
+
+    .movie-detail-bilheteria-aux-6 {
+      grid-column: 2 / span 1;
+      grid-row: 4 / span 1;
+    }
+
+    .movie-detail-duracao-aux-7 {
+      grid-column: 3 / span 1;
+      grid-row: 4 / span 1;
+    }
+
+    .movie-detail-situacao-aux-8 {
+      grid-column: 3 / span 3;
+      grid-row: 2;
+    }
+
+    .movie-detail-pais-aux-9 {
+      grid-column: 3 / span 1;
+      grid-row: 4;
+    }
+  }
+}
+
+.movie-detail-similar-container-section {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 55px 0px;
+  color: aliceblue;
+  overflow-y: hidden;
+  max-height: 850px;
+
+  .movie-detail-similar-title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .homePage-iconArrow {
+      width: 30px;
+      height: 30px;
+      padding: 2px;
+    }
+  }
+
+  .movie-detail-similar-card {
+    overflow: hidden;
+    height: 350px;
+    width: auto;
+    white-space: nowrap;
+    text-align: center;
+    padding-bottom: 50px !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* Responsivo para telas menores */
+@media (max-width: 1080px) {
+  .movie-detail-container-section {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .movie-detail-container {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      font-size: 1rem;
+      padding: 2%;
+      gap: 25px;
+    }
+  }
+
+  .movie-detail-poster-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    overflow: hidden;
+  }
+
+  .movie-detail-poster-background img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 12%;
+    z-index: -1;
+  }
+
+  .movie-detail-poster {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .movie-detail-poster img {
+    width: 500px;
+    height: 700px;
+    border-radius: 50px;
+    padding: 2%;
+  }
+
+  p {
+    font-size: 1.75rem;
+  }
+
+  .movie-detail-titulo-aux-1 {
+    font-size: 1rem;
+
+    h2 {
+      font-size: 0.875rem;
+    }
+  }
+
+  .movie-detail-similar-title-container {
+    margin-top: 2rem;
+  }
+
+  .movie-detail-similar-container-section {
+    padding: 10px 15px 0;
+  }
+}
+
+/* Responsivo para dispositivos móveis */
+@media (max-width: 600px) {
+  .movie-detail-container-section {
+    flex-direction: column;
+    gap: 20px;
+    padding: 1%;
+
+    .movie-detail-poster img {
+      width: 100%;
+      height: auto;
+      border-radius: 50px;
+      padding: 15px 10px 0;
+    }
+
+    .movie-detail-poster-background {
+      img {
+        position: absolute;
+        z-index: -1;
+        opacity: 15%;
+        object-fit: cover;
+        width: 100%;
+        height: 67%;
+      }
+    }
+
+    .movie-detail-container {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      font-size: 1rem;
+      padding: 5px;
+      gap: 15px;
+
+      p {
+        font-size: 1.5rem;
+      }
+
+      .movie-detail-titulo-aux-1 {
+        font-size: 0.875rem;
+
+        h2 {
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+
+  .movie-detail-similar-title-container {
+    margin-top: 2rem;
+  }
+  .movie-detail-providers {
+    padding: 2%;
+  }
+}
