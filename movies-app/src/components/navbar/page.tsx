@@ -48,7 +48,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 className={currentCategory === "Filmes" ? "active" : ""}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = "/Pages/MovieList";
+                  window.location.href = "/pages/MovieList";
                   setCategory("Filmes");
                 }}
               >
@@ -60,7 +60,7 @@ export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
                 className={currentCategory === "Series" ? "active" : ""}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = "/Pages/SeriesList";
+                  window.location.href = "/pages/SeriesList";
                   setCategory("Series");
                 }}
               >

@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="manifest" href="%PUBLIC_URL%/manifest.json"></link>
+      <link rel="manifest" href="/manifest.json"></link>
       <body className={inter.className}>{children}</body>
     </html>
   );
