@@ -11,7 +11,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useSeriesWatchProviders } from "@/hooks/userSeriesWatchProviders";
 import AuxiliarScrollSerie from "@/components/auxiliar/auxiliarScrollSerie";
 import { useSimilarSeries } from "@/hooks/useSimilarSeries";
-import { useRecommendationsMovies } from "@/hooks/useRecommendationsSeries";
+import { useRecommendationsSeries } from "@/hooks/useRecommendationsSeries";
 
 type Category = string;
 
@@ -28,7 +28,7 @@ function SerieDetailContent() {
     `Série: Título não disponível`
   );
   const { series: similarSeries } = useSimilarSeries(serieId);
-  const { series: recomendationSeries } = useRecommendationsMovies(serieId);
+  const { series: recomendationSeries } = useRecommendationsSeries(serieId);
 
   useEffect(() => {
     if (serie) {

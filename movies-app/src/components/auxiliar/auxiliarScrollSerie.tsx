@@ -35,7 +35,7 @@ export default function AuxiliarScrollMovie({ series }: Props) {
     const searchQuery = new URLSearchParams({
       q: serie.id.toString(),
     }).toString();
-    window.location.href = `/pages/movieDetail?${searchQuery}`;
+    window.location.href = `/pages/serieDetail?${searchQuery}`;
   };
 
   return (

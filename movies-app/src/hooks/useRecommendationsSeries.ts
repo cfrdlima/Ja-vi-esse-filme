@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getRecommendationSeries } from '@/services/recomendedSeriesService';
 import { Series } from '@/types/series';
 
-export const useRecommendationsMovies = (params: number) => {
+export const useRecommendationsSeries = (params: number) => {
   const [series, setSeries] = useState<Series[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
