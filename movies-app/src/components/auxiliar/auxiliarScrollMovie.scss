@@ -1,23 +1,30 @@
 .slider-container {
   width: 100%;
-  padding: 1%;
+  padding: 1.5%;
+  overflow: hidden;
+
+  .movie-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .movie-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .movie-image:hover {
+    transform: scale(1.05);
+  }
 }
 
-.movie-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-
-.movie-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.movie-image:hover {
-  transform: scale(1.05);
+@media (max-width: 1080px) {
+  .slider-container {
+    padding: 3%;
+  }
 }
