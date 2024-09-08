@@ -94,7 +94,7 @@ export default function HomePage() {
             <IoIosArrowForward className="homePage-iconArrow" />
           </div>
         </div>
-        <div className="homePage-movieList-card">
+        <div>
           <AuxiliarScrollMovie movies={movies2024} />
         </div>
       </section>
@@ -105,7 +105,7 @@ export default function HomePage() {
             <IoIosArrowForward className="homePage-iconArrow" />
           </div>
         </div>
-        <div className="homePage-movieList-card">
+        <div>
           <AuxiliarScrollMovie movies={horrorMovies} />
         </div>
       </section>
@@ -116,7 +116,7 @@ export default function HomePage() {
             <IoIosArrowForward className="homePage-iconArrow" />
           </div>
         </div>
-        <div className="homePage-movieList-card">
+        <div>
           <AuxiliarScrollMovie movies={actionMovies} />
         </div>
       </section>
@@ -127,7 +127,7 @@ export default function HomePage() {
             <IoIosArrowForward className="homePage-iconArrow" />
           </div>
         </div>
-        <div className="homePage-movieList-card">
+        <div>
           <AuxiliarScrollMovie movies={moviesTopRated} />
         </div>
       </section>
@@ -138,7 +138,7 @@ export default function HomePage() {
             <IoIosArrowForward className="homePage-iconArrow" />
           </div>
         </div>
-        <div className="homePage-movieList-card">
+        <div>
           <AuxiliarScrollMovie movies={moviesPopular} />
         </div>
       </section>

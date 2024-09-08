@@ -195,7 +195,7 @@ function MovieDetailContent() {
           <h1>Filmes similares</h1>
           <IoIosArrowForward className="homePage-iconArrow" />
         </div>
-        <div className="movie-detail-similar-card">
+        <div>
           <AuxiliarScrollMovie movies={similarMovies} />
         </div>
       </section>
@@ -204,7 +204,7 @@ function MovieDetailContent() {
           <h1>Filmes recomendados</h1>
           <IoIosArrowForward className="homePage-iconArrow" />
         </div>
-        <div className="movie-detail-similar-card">
+        <div>
           <AuxiliarScrollMovie movies={recommendationsMovies} />
         </div>
       </section>

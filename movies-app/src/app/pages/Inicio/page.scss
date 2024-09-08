@@ -147,18 +147,6 @@
       }
     }
   }
-
-  .homePage-movieList-card {
-    overflow: hidden;
-    height: 350px;
-    width: auto;
-    white-space: nowrap;
-    text-align: center;
-    padding-bottom: 10px !important;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
 }
 
 section:not(:nth-of-type(1)) {
