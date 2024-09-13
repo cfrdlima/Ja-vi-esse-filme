@@ -13,6 +13,86 @@
   min-height: calc(100vh - 72px);
 }
 
+.homePage-movieList {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  color: aliceblue;
+  gap: 15px;
+  overflow-y: hidden;
+  max-height: 850px;
+
+  .homePage-title-container {
+    display: flex;
+
+    .homePage-movieList-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .homePage-iconArrow {
+        width: 25px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+.homePage-footer-container {
+  background-color: #030a2b;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-top: 15rem;
+  .homePage-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 2rem;
+    .homePage-footerTitle {
+      font-size: 2rem;
+    }
+    .homePage-footerText-contact {
+      width: 100%;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+    .homePage-footerText {
+      width: 50%;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  }
+
+  .footer__copyright {
+    margin-top: 2rem;
+    padding: 1%;
+    font-size: 1rem;
+  }
+
+  .homePage-footer-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+    .homePage-footer-links-images {
+      width: 42px;
+      height: 42px;
+    }
+    .homePage-footer-links-images-2 {
+      width: 38px;
+      height: 38px;
+    }
+  }
+}
+
 .homePage-search {
   padding: 2.5rem 3%;
   display: flex;
@@ -116,102 +196,6 @@
         width: 20px;
         height: 20px;
       }
-    }
-  }
-}
-
-.homePage-movieList {
-  display: flex;
-  flex-direction: column;
-  padding: 2%;
-  color: aliceblue;
-  gap: 15px;
-  overflow-y: hidden;
-  max-height: 850px;
-
-  .homePage-title-container {
-    display: flex;
-
-    .homePage-movieList-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      .homePage-iconArrow {
-        width: 25px;
-        height: 30px;
-      }
-    }
-  }
-
-  .homePage-movieList-card {
-    overflow: hidden;
-    height: 350px;
-    width: auto;
-    white-space: nowrap;
-    text-align: center;
-    padding-bottom: 10px !important;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-}
-
-section:not(:nth-of-type(1)) {
-  max-height: 390px;
-}
-
-.homePage-footer-container {
-  background-color: #030a2b;
-  color: aliceblue;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  margin-top: 15rem;
-  .homePage-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 2rem;
-    .homePage-footerTitle {
-      font-size: 2rem;
-    }
-    .homePage-footerText-contact {
-      width: 100%;
-      font-size: 1.2rem;
-      text-align: center;
-    }
-    .homePage-footerText {
-      width: 50%;
-      font-size: 1.2rem;
-      text-align: center;
-    }
-  }
-
-  .footer__copyright {
-    margin-top: 2rem;
-    padding: 1%;
-    font-size: 1rem;
-  }
-
-  .homePage-footer-links {
-    display: flex;
-    gap: 10px;
-    margin-top: 1rem;
-    .homePage-footer-links-images {
-      width: 42px;
-      height: 42px;
-    }
-    .homePage-footer-links-images-2 {
-      width: 38px;
-      height: 38px;
     }
   }
 }

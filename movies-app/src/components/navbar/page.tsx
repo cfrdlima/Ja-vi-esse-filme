@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import "./page.scss";
 
 interface NavbarProps {
@@ -11,7 +10,6 @@ interface NavbarProps {
 
 export default function Navbar({ currentCategory, setCategory }: NavbarProps) {
   const [menuOpen, setMenuOpen] = React.useState(false);
-  const router = useRouter();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);

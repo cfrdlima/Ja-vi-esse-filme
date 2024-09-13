@@ -15,7 +15,6 @@ import { useRecommendationsSeries } from "@/hooks/useRecommendationsSeries";
 
 type Category = string;
 
-// Componente separado que usa `useSearchParams`
 function SerieDetailContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
@@ -186,7 +185,7 @@ function SerieDetailContent() {
             </div>
           }
         >
-          <div className="movie-detail-similar-card">
+          <div>
             <AuxiliarScrollSerie series={similarSeries} />
           </div>
         </Suspense>
@@ -208,7 +207,7 @@ function SerieDetailContent() {
             </div>
           }
         >
-          <div className="movie-detail-similar-card">
+          <div>
             <AuxiliarScrollSerie series={recomendationSeries} />
           </div>
         </Suspense>
