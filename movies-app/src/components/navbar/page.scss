@@ -11,7 +11,6 @@
 
   .page-title {
     color: aliceblue;
-    padding-right: 2%;
     font-size: 1.8rem;
     font-weight: bold;
   }
@@ -44,6 +43,10 @@
   @media (max-width: 768px) {
     .navbar-itens {
       display: none;
+    }
+
+    .page-title {
+      width: 100%;
     }
 
     .burger-menu {
