@@ -42,10 +42,9 @@ export default function SeriesList() {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        "https://api.themoviedb.org/3/discover/tv",
+        "/api/tmdb/discover/tv",
         {
           params: {
-            api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
             language: "pt-br",
             page: page,
             with_genres: filters.genre?.id || null,
@@ -68,10 +67,9 @@ export default function SeriesList() {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        "https://api.themoviedb.org/3/search/tv",
+        "/api/tmdb/search/tv",
         {
           params: {
-            api_key: "eabdfc6fc4fac646d5b41dc98dd4414e",
             language: "pt-br",
             page: page,
             query: filters.searchMovie || null,
