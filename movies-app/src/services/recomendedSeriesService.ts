@@ -1,13 +1,11 @@
 import axios from 'axios';
 
-const API_KEY = 'eabdfc6fc4fac646d5b41dc98dd4414e';
 
 export const getRecommendationSeries = async (serieId: number) => {
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/tv/${serieId}/recommendations`, {
+      `/api/tmdb/tv/${serieId}/recommendations`, {
       params: {
-        api_key: API_KEY,
         language: 'pt-BR',
         page: 1,
       },
